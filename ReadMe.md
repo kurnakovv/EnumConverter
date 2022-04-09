@@ -2,6 +2,8 @@
  <img src="icon.png" weight="100px" height="100" />
  <h2>EnumConverter</h2>
 
+ ![Build .NET 6](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build_dotnet_6.yml/badge.svg)
+
 </div>
 
 # Description
