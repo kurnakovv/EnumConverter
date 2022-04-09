@@ -2,7 +2,8 @@
  <img src="icon.png" weight="100px" height="100" />
  <h2>EnumConverter</h2>
 
- ![Build .NET 6](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build_dotnet_6.yml/badge.svg)
+[![Build .NET 6](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build_dotnet_6.yml/badge.svg)](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build_dotnet_6.yml)
+[![Build .NET 5](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build_dotnet_5.yml/badge.svg)](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build_dotnet_5.yml)
 
 </div>
 
