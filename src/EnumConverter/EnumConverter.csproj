@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net5.0;netstandard2.0;netstandard2.1</TargetFrameworks>
     <PackageId>Kurnakov.EnumConverter</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
     <Authors>KurnakovMaksim</Authors>
     <Company>KurnakovMaksim</Company>
     <Product>EnumConverter</Product>
@@ -14,6 +14,7 @@
     <PackageTags>enum;converter;enum coverter;</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
 	<AssemblyName>Kurnakov.EnumConverter</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
