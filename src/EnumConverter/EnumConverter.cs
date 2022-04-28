@@ -12,6 +12,7 @@ namespace EnumConverter
         /// </summary>
         /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
         /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <param name="ignoreCase">Ignore or regard case.</param>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentException"/>
         /// <exception cref="OverflowException"/>
