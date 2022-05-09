@@ -96,5 +96,67 @@ namespace EnumConverter.UnitTests
             Assert.Throws<ArgumentException>(() => { inputEnumSecond.ToAnother<AnotherEnum>(false); });
             Assert.Throws<ArgumentException>(() => { inputEnumThird.ToAnother<AnotherEnum>(false); });
         }
+
+        [Fact]
+        public void ToEnum_CanConvertStringToEnum_MyEnum()
+        {
+            // Arrange.
+            string firstValue = "First";
+            string secondValue = "Second";
+            string thirdValue = "Third";
+
+            string firstValueWithIgnoreCase = "FIRST";
+            string secondValueWithIgnoreCase = "second";
+            string thirdValueWithIgnoreCase = "ThIrD";
+
+            // Act.
+            MyEnum myEnumFirstValue = firstValue.ToEnum<MyEnum>();
+            MyEnum myEnumSecondValue = secondValue.ToEnum<MyEnum>();
+            MyEnum myEnumThirdValue = thirdValue.ToEnum<MyEnum>();
+
+            MyEnum myEnumFirstValueWithIgnoreCase = firstValueWithIgnoreCase.ToEnum<MyEnum>();
+            MyEnum myEnumSecondValueWithIgnoreCase = secondValueWithIgnoreCase.ToEnum<MyEnum>();
+            MyEnum myEnumThirdValueWithIgnoreCase = thirdValueWithIgnoreCase.ToEnum<MyEnum>();
+
+            // Assert.
+            Assert.IsType<MyEnum>(myEnumFirstValue);
+            Assert.IsType<MyEnum>(myEnumSecondValue);
+            Assert.IsType<MyEnum>(myEnumThirdValue);
+            Assert.Equal(MyEnum.First, myEnumFirstValue);
+            Assert.Equal(MyEnum.Second, myEnumSecondValue);
+            Assert.Equal(MyEnum.Third, myEnumThirdValue);
+
+            Assert.IsType<MyEnum>(myEnumFirstValueWithIgnoreCase);
+            Assert.IsType<MyEnum>(myEnumSecondValueWithIgnoreCase);
+            Assert.IsType<MyEnum>(myEnumThirdValueWithIgnoreCase);
+            Assert.Equal(MyEnum.First, myEnumFirstValueWithIgnoreCase);
+            Assert.Equal(MyEnum.Second, myEnumSecondValueWithIgnoreCase);
+            Assert.Equal(MyEnum.Third, myEnumThirdValueWithIgnoreCase);
+        }
+
+        [Fact]
+        public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException()
+        {
+            // Arrange.
+            string firstValueWithIgnoreCase = "FIRST";
+            string secondValueWithIgnoreCase = "second";
+            string thirdValueWithIgnoreCase = "ThIrD";
+
+            // Assert.
+            Assert.Throws<ArgumentException>(() => firstValueWithIgnoreCase.ToEnum<MyEnum>(false));
+            Assert.Throws<ArgumentException>(() => secondValueWithIgnoreCase.ToEnum<MyEnum>(false));
+            Assert.Throws<ArgumentException>(() => thirdValueWithIgnoreCase.ToEnum<MyEnum>(false));
+        }
+
+        [Fact]
+        public void ToEnum_CannotConvertInvalidString_ArgumentException()
+        {
+            // Arrange.
+            string invalidValue = "InvalidValue";
+
+            // Assert.
+            Assert.Throws<ArgumentException>(() => invalidValue.ToEnum<MyEnum>());
+            Assert.Throws<ArgumentException>(() => invalidValue.ToEnum<MyEnum>(false));
+        }
     }
 }
