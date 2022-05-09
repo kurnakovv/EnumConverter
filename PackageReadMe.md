@@ -4,7 +4,7 @@
 [![MIT License](https://img.shields.io/github/license/KurnakovMaksim/EnumConverter?color=%230b0&style=flat)](https://github.com/KurnakovMaksim/EnumConverter/blob/main/LICENSE)
 
 # Description
-EnumConverter is a little open source library for convert enum to another
+EnumConverter is a little open source library for convert enum
 
 # How is it work
 
@@ -49,8 +49,26 @@ AnotherEnum anotherEnumThird = third.ToAnother<AnotherEnum>(false);
 // anotherEnumThird - Throws ArgumentException
 ```
 
+Convert string -> enum
+``` cs
+string validFirstValue = "First";
+string validSecondWithIgnoreCase = "second";
+string invalidValue = "InvalidValue";
+
+MyEnum validFirstEnum = validFirstValue.ToEnum<MyEnum>();
+MyEnum validSecondEnum = validSecondWithIgnoreCase.ToEnum<MyEnum>();
+MyEnum invalidSecondEnum = validSecondWithIgnoreCase.ToEnum<MyEnum>(false);
+MyEnum invalidEnum = invalidValue.ToEnum<MyEnum>();
+
+// Output:
+// validFirstEnum - MyEnum.First
+// validSecondEnum - MyEnum.Second
+// invalidSecondEnum - Throws ArgumentException
+// invalidEnum - Throws ArgumentException
+```
+
 # Reason
-I always forget how to convert enum to another and I create this library for convenience
+I always forget how to convert enum and I create this library for convenience
 
 # Give a star ⭐
 I hope this library is useful for you, if so please give a star for this repository, thank you :)
