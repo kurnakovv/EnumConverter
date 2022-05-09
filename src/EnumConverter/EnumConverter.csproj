@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net5.0;netstandard2.0;netstandard2.1</TargetFrameworks>
     <PackageId>Kurnakov.EnumConverter</PackageId>
-    <Version>1.0.4</Version>
+    <Version>1.1.0</Version>
     <Authors>KurnakovMaksim</Authors>
     <Company>KurnakovMaksim</Company>
     <Product>EnumConverter</Product>
-    <Description>EnumConverter is a little open source library for convert enum to another</Description>
+    <Description>EnumConverter is a little open source library for convert enum</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>PackageReadMe.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/KurnakovMaksim/EnumConverter</RepositoryUrl>
-    <PackageTags>enum;converter;enum coverter;</PackageTags>
+    <PackageTags>enum;converter;enum coverter;string;string converter</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
 	<AssemblyName>Kurnakov.EnumConverter</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
