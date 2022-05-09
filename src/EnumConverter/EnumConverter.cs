@@ -38,5 +38,35 @@ namespace EnumConverter
         {
             return enumValue.ToAnother<TAnotherEnum>(true);
         }
+
+        /// <summary>
+        /// Convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/>.
+        /// </summary>
+        /// <typeparam name="TEnum">Enum that we want to get after convert</typeparam>
+        /// <param name="stringValue">Input string we want to convert to <typeparamref name="TEnum"/>.</param>
+        /// <param name="ignoreCase">Ignore or regard case.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="OverflowException"/>
+        /// <returns><typeparamref name="TEnum"/>.</returns>
+        public static TEnum ToEnum<TEnum>(this string stringValue, bool ignoreCase)
+        {
+            return (TEnum)Enum.Parse(typeof(TEnum), stringValue, ignoreCase);
+        }
+
+        /// <summary>
+        /// Convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/>.
+        /// </summary>
+        /// <remarks>ignoreCase = true.</remarks>
+        /// <typeparam name="TEnum">Enum that we want to get after convert</typeparam>
+        /// <param name="stringValue">Input string we want to convert to <typeparamref name="TEnum"/>.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="OverflowException"/>
+        /// <returns><typeparamref name="TEnum"/>.</returns>
+        public static TEnum ToEnum<TEnum>(this string stringValue)
+        {
+            return stringValue.ToEnum<TEnum>(true);
+        }
     }
 }
