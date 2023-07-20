@@ -1,4 +1,4 @@
-﻿namespace EnumConverter.UnitTests.TestEnums
+﻿namespace EnumConverterLibrary.UnitTests.TestEnums
 {
     public enum InputEnumUpperCase
     {

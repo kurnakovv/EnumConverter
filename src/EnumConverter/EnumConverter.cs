@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EnumConverter
+namespace EnumConverterLibrary
 {
     /// <summary>
     /// Enum converter.

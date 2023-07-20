@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\EnumConverter\EnumConverter.csproj" />
+    <ProjectReference Include="..\..\src\EnumConverter\EnumConverterLibrary.csproj" />
   </ItemGroup>
 
 </Project>
