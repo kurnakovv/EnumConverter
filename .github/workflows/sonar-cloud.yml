@@ -1,13 +1,16 @@
 name: SonarCloud
 on:
   push:
-    branches: [ main ]
     paths:
       - '**.cs'
+      - '**.yml'
+      - '**.csproj'
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - '**.cs'
+      - '**.yml'
+      - '**.csproj'
 jobs:
   build:
     name: Build
@@ -58,7 +61,7 @@ jobs:
         shell: powershell
         run: |
           dotnet tool install --global dotnet-coverage
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"KurnakovMaksim_EnumConverter" /o:"kurnakovmaksim" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"kurnakovv_EnumConverter" /o:"kurnakovmaksim" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
           dotnet restore
           dotnet build --no-restore
           dotnet test --no-build --verbosity normal
