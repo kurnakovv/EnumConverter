@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET Core 3
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.0.x
+          dotnet-version: 3.1.x
       - name: Setup .NET 5
         uses: actions/setup-dotnet@v1
         with:
@@ -58,7 +58,7 @@ jobs:
         shell: powershell
         run: |
           dotnet tool install --global dotnet-coverage
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"KurnakovMaksim_EnumConverter" /o:"kurnakovmaksim" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"kurnakovv_EnumConverter" /o:"kurnakovv" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
           dotnet restore
           dotnet build --no-restore
           dotnet test --no-build --verbosity normal
