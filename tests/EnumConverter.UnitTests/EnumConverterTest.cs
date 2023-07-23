@@ -1,8 +1,8 @@
-﻿using EnumConverter.UnitTests.TestEnums;
+﻿using EnumConverterLibrary.UnitTests.TestEnums;
 using System;
 using Xunit;
 
-namespace EnumConverter.UnitTests
+namespace EnumConverterLibrary.UnitTests
 {
     public class EnumConverterTest
     {
