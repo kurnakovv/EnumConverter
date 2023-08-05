@@ -5,7 +5,7 @@
 
  [![NuGet](https://img.shields.io/nuget/v/Kurnakov.EnumConverter.svg)](https://www.nuget.org/packages/Kurnakov.EnumConverter)
  [![NuGet download](https://img.shields.io/nuget/dt/Kurnakov.EnumConverter.svg)](https://www.nuget.org/packages/Kurnakov.EnumConverter) 
- ![Visitors](http://estruyf-github.azurewebsites.net/api/VisitorHit?user=KurnakovMaksim&repo=EnumConverter&countColor=%237B1E7A&style=flat)
+ ![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%kurnakovv%EnumConverter&countColor=%23263759&style=flat)
  [![Build/Test](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build-test.yml/badge.svg)](https://github.com/KurnakovMaksim/EnumConverter/actions/workflows/build-test.yml)
 [![MIT License](https://img.shields.io/github/license/KurnakovMaksim/EnumConverter?color=%230b0&style=flat)](https://github.com/KurnakovMaksim/EnumConverter/blob/main/LICENSE)
  [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=kurnakovv_EnumConverter&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=kurnakovv_EnumConverter) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kurnakovv_EnumConverter&metric=coverage)](https://sonarcloud.io/summary/new_code?id=kurnakovv_EnumConverter)
