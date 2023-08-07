@@ -40,6 +40,36 @@ namespace EnumConverterLibrary
         }
 
         /// <summary>
+        /// Try convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/>.
+        /// </summary>
+        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
+        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <param name="ignoreCase">Ignore or regard case.</param>
+        /// <param name="anotherEnum"><typeparamref name="TAnotherEnum"/> or default of <typeparamref name="TAnotherEnum"/>.</param>
+        /// <exception cref="ArgumentException"/>
+        /// <returns>true if the <paramref name="enumValue"/> parameter was converted successfully; otherwise, false.</returns>
+        public static bool TryToAnother<TAnotherEnum>(this Enum enumValue, bool ignoreCase, out TAnotherEnum anotherEnum)
+            where TAnotherEnum : struct
+        {
+            return Enum.TryParse(enumValue.ToString(), ignoreCase, out anotherEnum);
+        }
+
+        /// <summary>
+        /// Try convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/>.
+        /// </summary>
+        /// <remarks>ignoreCase = true.</remarks>
+        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
+        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <param name="anotherEnum"><typeparamref name="TAnotherEnum"/> or default of <typeparamref name="TAnotherEnum"/>.</param>
+        /// <exception cref="ArgumentException"/>
+        /// <returns>true if the <paramref name="enumValue"/> parameter was converted successfully; otherwise, false.</returns>
+        public static bool TryToAnother<TAnotherEnum>(this Enum enumValue, out TAnotherEnum anotherEnum)
+            where TAnotherEnum : struct
+        {
+            return enumValue.TryToAnother(true, out anotherEnum);
+        }
+
+        /// <summary>
         /// Convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/>.
         /// </summary>
         /// <typeparam name="TEnum">Enum that we want to get after convert</typeparam>
