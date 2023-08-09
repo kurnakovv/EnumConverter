@@ -204,6 +204,66 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Fact]
+        public void ToAnotherOrDefault_CanConvertInputEnumToAnother_AnotherEnum()
+        {
+            // Arrange.
+            InputEnum inputEnumFirst = InputEnum.First;
+            InputEnum inputEnumSecond = InputEnum.Second;
+            InputEnum inputEnumThird = InputEnum.Third;
+
+            // Act.
+            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>();
+            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnotherOrDefault<AnotherEnum>();
+            AnotherEnum anotherEnumThird = inputEnumThird.ToAnotherOrDefault<AnotherEnum>();
+
+            // Assert.
+            Assert.IsType<AnotherEnum>(anotherEnumFirst);
+            Assert.IsType<AnotherEnum>(anotherEnumSecond);
+            Assert.IsType<AnotherEnum>(anotherEnumThird);
+
+            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
+            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
+            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+        }
+
+        [Fact]
+        public void ToAnotherOrDefault_CannotConvertInvalidEnum_DefaultEnumValue()
+        {
+            // Arrange.
+            InvalidEnum invalidSecondValue = InvalidEnum.SecondInvalidValue;
+
+            // Act.
+            AnotherEnum anotherEnum = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>();
+
+            // Assert.
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal(default(AnotherEnum), anotherEnum);
+        }
+
+        [Fact]
+        public void ToAnotherOrDefault_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum()
+        {
+            // Arrange.
+            InputEnum inputEnumFirst = InputEnum.First;
+            InputEnum inputEnumSecond = InputEnum.Second;
+            InputEnum inputEnumThird = InputEnum.Third;
+
+            // Act.
+            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>(false);
+            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnotherOrDefault<AnotherEnum>(false);
+            AnotherEnum anotherEnumThird = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
+
+            // Assert.
+            Assert.IsType<AnotherEnum>(anotherEnumFirst);
+            Assert.IsType<AnotherEnum>(anotherEnumSecond);
+            Assert.IsType<AnotherEnum>(anotherEnumThird);
+
+            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
+            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
+            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+        }
+
+        [Fact]
         public void ToEnum_CanConvertStringToEnum_MyEnum()
         {
             // Arrange.
