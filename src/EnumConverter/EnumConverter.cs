@@ -70,6 +70,36 @@ namespace EnumConverterLibrary
         }
 
         /// <summary>
+        /// Convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.
+        /// </summary>
+        /// <remarks>ignoreCase = true.</remarks>
+        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
+        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <exception cref="ArgumentException"/>
+        /// <returns><typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible to convert.</returns>
+        public static TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum enumValue)
+            where TAnotherEnum : struct
+        {
+            return enumValue.ToAnotherOrDefault<TAnotherEnum>(true);
+        }
+
+        /// <summary>
+        /// Convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.
+        /// </summary>
+        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
+        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <param name="ignoreCase">Ignore or regard case.</param>
+        /// <exception cref="ArgumentException"/>
+        /// <returns><typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible to convert.</returns>
+        public static TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum enumValue, bool ignoreCase)
+            where TAnotherEnum : struct
+        {
+            return enumValue.TryToAnother(ignoreCase, out TAnotherEnum anotherEnum)
+                ? anotherEnum
+                : default(TAnotherEnum);
+        }
+
+        /// <summary>
         /// Convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/>.
         /// </summary>
         /// <typeparam name="TEnum">Enum that we want to get after convert</typeparam>
