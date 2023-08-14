@@ -1,12 +1,12 @@
 # ToAnother
 
-**Signature**
-
-TAnotherEnum ToAnother<TAnotherEnum>(this Enum, bool [default = true]) where TAnotherEnum : Enum
-
 **Description**
 
 Convert input enum to another enum.
+
+**Signature**
+
+TAnotherEnum ToAnother<TAnotherEnum>(this Enum, bool [default = true]) where TAnotherEnum : Enum
 
 **Code examples**
 ```csharp
