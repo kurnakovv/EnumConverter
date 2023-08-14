@@ -67,6 +67,8 @@ MyEnum invalidEnum = invalidValue.ToEnum<MyEnum>();
 // invalidEnum - Throws ArgumentException
 ```
 
+Full docs [here](https://github.com/kurnakovv/EnumConverter/blob/main/DocsReadMe.md)
+
 # Reason
 I always forget how to convert enum and I create this library for convenience
 
