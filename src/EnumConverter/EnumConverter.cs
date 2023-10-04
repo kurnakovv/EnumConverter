@@ -42,8 +42,8 @@ namespace EnumConverterLibrary
         /// <summary>
         /// Try convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/>.
         /// </summary>
-        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
-        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <typeparam name="TAnotherEnum">Enum that we want try to get after convert.</typeparam>
+        /// <param name="enumValue">Input enum we want try to convert to <typeparamref name="TAnotherEnum"/>.</param>
         /// <param name="ignoreCase">Ignore or regard case.</param>
         /// <param name="anotherEnum"><typeparamref name="TAnotherEnum"/> or default of <typeparamref name="TAnotherEnum"/>.</param>
         /// <exception cref="ArgumentException"/>
@@ -58,8 +58,8 @@ namespace EnumConverterLibrary
         /// Try convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/>.
         /// </summary>
         /// <remarks>ignoreCase = true.</remarks>
-        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
-        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <typeparam name="TAnotherEnum">Enum that we want try to get after convert.</typeparam>
+        /// <param name="enumValue">Input enum we want try to convert to <typeparamref name="TAnotherEnum"/>.</param>
         /// <param name="anotherEnum"><typeparamref name="TAnotherEnum"/> or default of <typeparamref name="TAnotherEnum"/>.</param>
         /// <exception cref="ArgumentException"/>
         /// <returns>true if the <paramref name="enumValue"/> parameter was converted successfully; otherwise, false.</returns>
