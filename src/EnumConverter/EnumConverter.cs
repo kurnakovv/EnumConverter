@@ -73,8 +73,8 @@ namespace EnumConverterLibrary
         /// Convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.
         /// </summary>
         /// <remarks>ignoreCase = true.</remarks>
-        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
-        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <typeparam name="TAnotherEnum">Enum that we want try to get after convert or default value of <typeparamref name="TAnotherEnum"/> if not possible.</typeparam>
+        /// <param name="enumValue">Input enum we want try to convert to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.</param>
         /// <exception cref="ArgumentException"/>
         /// <returns><typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible to convert.</returns>
         public static TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum enumValue)
@@ -86,8 +86,8 @@ namespace EnumConverterLibrary
         /// <summary>
         /// Convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.
         /// </summary>
-        /// <typeparam name="TAnotherEnum">Enum that we want to get after convert.</typeparam>
-        /// <param name="enumValue">Input enum we want to convert to <typeparamref name="TAnotherEnum"/>.</param>
+        /// <typeparam name="TAnotherEnum">Enum that we want try to get after convert or default value of <typeparamref name="TAnotherEnum"/> if not possible.</typeparam>
+        /// <param name="enumValue">Input enum we want try to convert to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.</param>
         /// <param name="ignoreCase">Ignore or regard case.</param>
         /// <exception cref="ArgumentException"/>
         /// <returns><typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible to convert.</returns>
