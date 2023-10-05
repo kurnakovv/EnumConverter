@@ -12,7 +12,25 @@ on:
       - '**.yml'
       - '**.csproj'
 jobs:
+  check-sonar-token:
+   name: Check if container registry SONAR_TOKEN
+   runs-on: ubuntu-latest
+   outputs:
+     have_sonar_token: ${{ steps.detect_sonar_token.outputs.have_sonar_token }}
+   steps:
+     - id: detect_sonar_token
+       run: |
+         if [[ "${{ secrets.SONAR_TOKEN }}" != "" ]]; \
+         then
+           echo "SONAR_TOKEN were configured in the repo"
+           echo "::set-output name=have_sonar_token::true"
+         else
+           echo "SONAR_TOKEN were configured in the repo"
+           echo "::set-output name=have_sonar_token::false"
+         fi
   build:
+    needs: [check-sonar-token]
+    if: needs.check-sonar-token.outputs.have_sonar_token == 'true'
     name: Build
     runs-on: windows-latest
     steps:
