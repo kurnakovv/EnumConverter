@@ -129,3 +129,47 @@ bool isConverted = invalidSecondValue.TryToAnother(out AnotherEnum anotherEnum);
 // Output:
 // [isConverted, anotherEnum] - [false, First]
 ```
+
+# ToOther
+
+**Description**
+
+Convert input enums to other enums.
+
+**Signature**
+
+IEnumerable<TOutputEnum> ToOther<TInputEnum, TOutputEnum>(this IEnumerable<InputEnum>, bool [default = true]) where TInputEnum, TOutputEnum : Enum
+
+**Type Parameters**
+
+`TInputEnum` - Type of `enumValues`
+`TOutputEnum` - Enum type that we want to get after convert.
+
+**Parameters**
+
+- `IEnumerable<TInputEnum> enumValues` - The input enums that we want to convert to enumerable of `TOutputEnum`.
+- `bool ignoreCase` - Ignore or regard case.
+
+**Returns**
+
+`IEnumerable<TOutputEnum>`
+
+**Code examples**
+```csharp
+// Enums
+public enum InputEnum { First, Second, Third }
+public enum OutputEnum { First, Second, Third }
+```
+
+```csharp
+IEnumerable<InputEnum> inputEnums = new List<InputEnum>()
+{
+    InputEnum.First, InputEnum.Second, InputEnum.Third,
+};
+IEnumerable<OutputEnum> output = inputEnums.ToOther<InputEnum, OutputEnum>(); // or false if case is important.
+
+// output
+// 1 - OutputEnum.First
+// 2 - OutputEnum.Second
+// 3 - OutputEnum.Third
+```
