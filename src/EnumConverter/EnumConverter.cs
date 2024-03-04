@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EnumConverterLibrary
 {
@@ -37,6 +38,45 @@ namespace EnumConverterLibrary
             where TAnotherEnum : Enum
         {
             return enumValue.ToAnother<TAnotherEnum>(true);
+        }
+
+        /// <summary>
+        /// Convert <paramref name="enumValues"/> to enumerable of <typeparamref name="TAnotherEnum"/>.
+        /// </summary>
+        /// <typeparam name="TInputEnum">Type of <paramref name="enumValues"/>.</typeparam>
+        /// <typeparam name="TAnotherEnum">Enum type that we want to get after convert.</typeparam>
+        /// <param name="enumValues">The input enums that we want to convert to enumerable of <typeparamref name="TAnotherEnum"/>.</param>
+        /// <param name="ignoreCase">Ignore or regard case.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="OverflowException"/>
+        /// <returns>Enumerable of <typeparamref name="TAnotherEnum"/>.</returns>
+        public static IEnumerable<TAnotherEnum> ToAnother<TInputEnum, TAnotherEnum>(this IEnumerable<TInputEnum> enumValues, bool ignoreCase)
+            where TInputEnum : Enum
+            where TAnotherEnum : Enum
+        {
+            foreach (Enum value in enumValues)
+            {
+                yield return value.ToAnother<TAnotherEnum>(ignoreCase);
+            }
+        }
+
+        /// <summary>
+        /// Convert <paramref name="enumValues"/> to enumerable of <typeparamref name="TAnotherEnum"/>.
+        /// </summary>
+        /// <remarks>ignoreCase = true.</remarks>
+        /// <typeparam name="TInputEnum">Type of <paramref name="enumValues"/>.</typeparam>
+        /// <typeparam name="TAnotherEnum">Enum type that we want to get after convert.</typeparam>
+        /// <param name="enumValues">The input enums that we want to convert to enumerable of <typeparamref name="TAnotherEnum"/>.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="OverflowException"/>
+        /// <returns>Enumerable of <typeparamref name="TAnotherEnum"/>.</returns>
+        public static IEnumerable<TAnotherEnum> ToAnother<TInputEnum, TAnotherEnum>(this IEnumerable<TInputEnum> enumValues)
+            where TInputEnum : Enum
+            where TAnotherEnum : Enum
+        {
+            return enumValues.ToAnother<TInputEnum, TAnotherEnum>(true);
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿using EnumConverterLibrary.UnitTests.TestEnums;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace EnumConverterLibrary.UnitTests
@@ -95,6 +97,36 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Throws<ArgumentException>(() => { inputEnumFirst.ToAnother<AnotherEnum>(false); });
             Assert.Throws<ArgumentException>(() => { inputEnumSecond.ToAnother<AnotherEnum>(false); });
             Assert.Throws<ArgumentException>(() => { inputEnumThird.ToAnother<AnotherEnum>(false); });
+        }
+
+        [Fact]
+        public void ToAnother_CanConvertInputEnumsToAnotherEnums_AnotherEnums()
+        {
+            IEnumerable<InputEnum> inputEnums = new List<InputEnum>()
+            {
+                InputEnum.First, InputEnum.Second, InputEnum.Third,
+            };
+
+            List<AnotherEnum> result = inputEnums.ToAnother<InputEnum, AnotherEnum>().ToList();
+
+            Assert.Equal(AnotherEnum.First, result[0]);
+            Assert.Equal(AnotherEnum.Second, result[1]);
+            Assert.Equal(AnotherEnum.Third, result[2]);
+        }
+
+        [Fact]
+        public void ToAnother_CanConvertInputEnumsToAnotherEnumsWithIgnoreCaseEqualsFalse_AnotherEnums()
+        {
+            IEnumerable<InputEnum> inputEnums = new List<InputEnum>()
+            {
+                InputEnum.First, InputEnum.Second, InputEnum.Third,
+            };
+
+            List<AnotherEnum> result = inputEnums.ToAnother<InputEnum, AnotherEnum>(false).ToList();
+
+            Assert.Equal(AnotherEnum.First, result[0]);
+            Assert.Equal(AnotherEnum.Second, result[1]);
+            Assert.Equal(AnotherEnum.Third, result[2]);
         }
 
         [Fact]
