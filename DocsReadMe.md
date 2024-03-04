@@ -166,7 +166,7 @@ IEnumerable<InputEnum> inputEnums = new List<InputEnum>()
 {
     InputEnum.First, InputEnum.Second, InputEnum.Third,
 };
-IEnumerable<OutputEnum> output = inputEnums.ToOther<InputEnum, OutputEnum>(true);
+IEnumerable<OutputEnum> output = inputEnums.ToOther<InputEnum, OutputEnum>(); // or false if case is important.
 
 // output
 // 1 - OutputEnum.First
