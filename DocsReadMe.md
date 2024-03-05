@@ -173,3 +173,45 @@ IEnumerable<OutputEnum> output = inputEnums.ToOther<InputEnum, OutputEnum>(); //
 // 2 - OutputEnum.Second
 // 3 - OutputEnum.Third
 ```
+
+# ToEnums
+
+**Description**
+
+Convert input string to enums.
+
+**Signature**
+
+IEnumerable<TEnum> ToEnums<TEnum>(this IEnumerable<string>, bool [default = true]) where TEnum : Enum
+
+**Type Parameters**
+
+`TEnum` - Enum type that we want to get after convert.
+
+**Parameters**
+
+- `IEnumerable<string> stringValues` - The input string that we want to convert to enumerable of `TEnum`.
+- `bool ignoreCase` - Ignore or regard case.
+
+**Returns**
+
+`IEnumerable<TEnum>`
+
+**Code examples**
+```csharp
+// Enums
+public enum MyEnum { First, Second, Third }
+```
+
+```csharp
+IEnumerable<string> inputEnums = new List<string>()
+{
+    "First", "Second", "Third",
+};
+IEnumerable<MyEnum> output = inputEnums.ToEnums<MyEnum>(); // or false if case is important.
+
+// output
+// 1 - MyEnum.First
+// 2 - MyEnum.Second
+// 3 - MyEnum.Third
+```
