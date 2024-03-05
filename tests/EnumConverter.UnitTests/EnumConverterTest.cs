@@ -356,5 +356,35 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Throws<ArgumentException>(() => invalidValue.ToEnum<MyEnum>());
             Assert.Throws<ArgumentException>(() => invalidValue.ToEnum<MyEnum>(false));
         }
+
+        [Fact]
+        public void ToEnums_CanConvertStringsToEnums_MyEnums()
+        {
+            IEnumerable<string> values = new List<string>()
+            {
+                "First", "Second", "Third"
+            };
+
+            List<MyEnum> result = values.ToEnums<MyEnum>().ToList();
+
+            Assert.Equal(MyEnum.First, result[0]);
+            Assert.Equal(MyEnum.Second, result[1]);
+            Assert.Equal(MyEnum.Third, result[2]);
+        }
+
+        [Fact]
+        public void ToEnums_CanConvertStringsToEnumsWithIgnoreCaseEqualsFalse_MyEnums()
+        {
+            IEnumerable<string> values = new List<string>()
+            {
+                "First", "Second", "Third"
+            };
+
+            List<MyEnum> result = values.ToEnums<MyEnum>(false).ToList();
+
+            Assert.Equal(MyEnum.First, result[0]);
+            Assert.Equal(MyEnum.Second, result[1]);
+            Assert.Equal(MyEnum.Third, result[2]);
+        }
     }
 }
