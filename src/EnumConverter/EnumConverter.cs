@@ -168,5 +168,40 @@ namespace EnumConverterLibrary
         {
             return stringValue.ToEnum<TEnum>(true);
         }
+
+        /// <summary>
+        /// Convert <paramref name="stringValues"/> to enumerable of <typeparamref name="TEnum"/>.
+        /// </summary>
+        /// <typeparam name="TEnum">Enum type that we want to get after convert.</typeparam>
+        /// <param name="stringValues">The input strings that we want to convert to enumerable of <typeparamref name="TEnum"/>.</param>
+        /// <param name="ignoreCase">Ignore or regard case.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="OverflowException"/>
+        /// <returns>Enumerable of <typeparamref name="TEnum"/>.</returns>
+        public static IEnumerable<TEnum> ToEnums<TEnum>(this IEnumerable<string> stringValues, bool ignoreCase)
+            where TEnum : Enum
+        {
+            foreach (string value in stringValues)
+            {
+                yield return value.ToEnum<TEnum>(ignoreCase);
+            }
+        }
+
+        /// <summary>
+        /// Convert <paramref name="stringValues"/> to enumerable of <typeparamref name="TEnum"/>.
+        /// </summary>
+        /// <remarks>ignoreCase = true.</remarks>
+        /// <typeparam name="TEnum">Enum type that we want to get after convert.</typeparam>
+        /// <param name="stringValues">The input strings that we want to convert to enumerable of <typeparamref name="TEnum"/>.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="OverflowException"/>
+        /// <returns>Enumerable of <typeparamref name="TEnum"/>.</returns>
+        public static IEnumerable<TEnum> ToEnums<TEnum>(this IEnumerable<string> stringValues)
+            where TEnum : Enum
+        {
+            return stringValues.ToEnums<TEnum>(true);
+        }
     }
 }
