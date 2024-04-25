@@ -358,6 +358,112 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Fact]
+        public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum()
+        {
+            // Arrange.
+            string stringValueFirst = "First";
+            string stringValueSecond = "Second";
+            string stringValueThird = "Third";
+
+            // Act.
+            bool isConvertedFirst = stringValueFirst.TryToEnum(out MyEnum enumFirst);
+            bool isConvertedSecond = stringValueSecond.TryToEnum(out MyEnum enumSecond);
+            bool isConvertedThird = stringValueThird.TryToEnum(out MyEnum enumThird);
+
+            // Assert.
+            Assert.True(isConvertedFirst);
+            Assert.True(isConvertedSecond);
+            Assert.True(isConvertedThird);
+
+            Assert.IsType<MyEnum>(enumFirst);
+            Assert.IsType<MyEnum>(enumSecond);
+            Assert.IsType<MyEnum>(enumThird);
+
+            Assert.Equal(MyEnum.First, enumFirst);
+            Assert.Equal(MyEnum.Second, enumSecond);
+            Assert.Equal(MyEnum.Third, enumThird);
+        }
+
+        [Fact]
+        public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCase_TrueAndEnum()
+        {
+            // Arrange.
+            string stringValue_first = "first";
+            string stringValue_second = "second";
+            string stringValue_third = "third";
+
+            string stringValueFIRST = "FIRST";
+            string stringValueSECOND = "SECOND";
+            string stringValueTHIRD = "THIRD";
+
+            // Act.
+            bool isConvertedFirstLowerCase = stringValue_first.TryToEnum(true, out MyEnum enumFirstLowerCase);
+            bool isConvertedSecondLowerCase = stringValue_second.TryToEnum(true, out MyEnum enumSecondLowerCase);
+            bool isConvertedThirdLowerCase = stringValue_third.TryToEnum(true, out MyEnum enumThirdLowerCase);
+
+            bool isConvertedFirstUpperCase = stringValueFIRST.TryToEnum(true, out MyEnum enumFirstUpperCase);
+            bool isConvertedSecondUpperCase = stringValueSECOND.TryToEnum(true, out MyEnum enumSecondUpperCase);
+            bool isConvertedThirdUpperCase = stringValueTHIRD.TryToEnum(true, out MyEnum enumThirdUpperCase);
+
+            // Assert.
+            Assert.True(isConvertedFirstLowerCase);
+            Assert.True(isConvertedSecondLowerCase);
+            Assert.True(isConvertedThirdLowerCase);
+            Assert.Equal(MyEnum.First, enumFirstLowerCase);
+            Assert.Equal(MyEnum.Second, enumSecondLowerCase);
+            Assert.Equal(MyEnum.Third, enumThirdLowerCase);
+
+            Assert.True(isConvertedFirstUpperCase);
+            Assert.True(isConvertedSecondUpperCase);
+            Assert.True(isConvertedThirdUpperCase);
+            Assert.Equal(MyEnum.First, enumFirstUpperCase);
+            Assert.Equal(MyEnum.Second, enumSecondUpperCase);
+            Assert.Equal(MyEnum.Third, enumThirdUpperCase);
+        }
+
+        [Fact]
+        public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCaseEqualsFalse_TrueAndEnum()
+        {
+            // Arrange.
+            string stringValueFirst = "First";
+            string stringValueSecond = "Second";
+            string stringValueThird = "Third";
+
+            // Act.
+            bool isConvertedFirst = stringValueFirst.TryToEnum(false, out MyEnum enumFirst);
+            bool isConvertedSecond = stringValueSecond.TryToEnum(false, out MyEnum enumSecond);
+            bool isConvertedThird = stringValueThird.TryToEnum(false, out MyEnum enumThird);
+
+            // Assert.
+            Assert.True(isConvertedFirst);
+            Assert.True(isConvertedSecond);
+            Assert.True(isConvertedThird);
+
+            Assert.IsType<MyEnum>(enumFirst);
+            Assert.IsType<MyEnum>(enumSecond);
+            Assert.IsType<MyEnum>(enumThird);
+
+            Assert.Equal(MyEnum.First, enumFirst);
+            Assert.Equal(MyEnum.Second, enumSecond);
+            Assert.Equal(MyEnum.Third, enumThird);
+        }
+
+        [Fact]
+        public void TryToEnum_CannotConvertInvalidStringValue_FalseAndDefaultEnumValue()
+        {
+            // Arrange.
+            string invalidValue = "BlaBlaBla";
+
+            // Act.
+            bool isConverted = invalidValue.TryToEnum(out MyEnum anotherEnum);
+
+            // Assert.
+            Assert.False(isConverted);
+            Assert.IsType<MyEnum>(anotherEnum);
+            Assert.Equal(default(MyEnum), anotherEnum);
+        }
+
+        [Fact]
         public void ToEnums_CanConvertStringsToEnums_MyEnums()
         {
             IEnumerable<string> values = new List<string>()
