@@ -174,6 +174,51 @@ IEnumerable<OutputEnum> output = inputEnums.ToOther<InputEnum, OutputEnum>(); //
 // 3 - OutputEnum.Third
 ```
 
+# TryToEnum
+
+**Description**
+
+Try convert string value to enum.
+
+**Signature**
+
+bool TryToEnum<TEnum>(this string, bool [default = true] out TEnum) where TEnum : struct, Enum
+
+**Type Parameters**
+
+`TEnum` - Enum that we want try to get after convert.
+
+**Parameters**
+
+- `string stringValue` - Input string we want to convert to `TEnum`.
+- `bool ignoreCase` - Ignore or regard case.
+- `out TEnum outputEnum` - `TEnum` or default of `TEnum`.
+
+**Returns**
+
+true if the `stringValue` parameter was converted successfully; otherwise, false.
+
+**Code examples**
+
+```csharp
+public enum MyEnum { First, Second, Third }
+```
+
+```csharp
+string stringValueFirst = "First";
+string stringValueSecond = "Second";
+string stringValueInvalid = "Blablabla";
+
+bool isConvertedFirst = stringValueFirst.TryToEnum(out MyEnum enumFirst);
+bool isConvertedSecond = stringValueSecond.TryToEnum(false, out MyEnum enumSecond);
+bool isConvertedThird = stringValueInvalid.TryToEnum(out MyEnum enumThird);
+
+// output
+// [isConvertedFirst, enumFirst] - [true, MyEnum.First]
+// [isConvertedSecond, enumSecond] - [true, MyEnum.Second]
+// [isConvertedThird, enumThird] - [false, MyEnum.First]
+```
+
 # ToEnums
 
 **Description**
