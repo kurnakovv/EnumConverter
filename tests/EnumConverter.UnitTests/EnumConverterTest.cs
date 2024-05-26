@@ -233,13 +233,17 @@ namespace EnumConverterLibrary.UnitTests
         {
             // Arrange.
             InvalidEnum invalidSecondValue = InvalidEnum.SecondInvalidValue;
+            AnotherEnum defaultValue = AnotherEnum.Third;
 
             // Act.
             AnotherEnum anotherEnum = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>();
+            AnotherEnum anotherEnumWithDefaultValue = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>(defaultValue);
 
             // Assert.
             Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.IsType<AnotherEnum>(anotherEnumWithDefaultValue);
             Assert.Equal(default(AnotherEnum), anotherEnum);
+            Assert.Equal(defaultValue, anotherEnumWithDefaultValue);
         }
 
         [Fact]

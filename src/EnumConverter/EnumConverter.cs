@@ -76,12 +76,13 @@ namespace EnumConverterLibrary
         /// <remarks>ignoreCase = true.</remarks>
         /// <typeparam name="TAnotherEnum">Enum that we want try to get after convert or default value of <typeparamref name="TAnotherEnum"/> if not possible.</typeparam>
         /// <param name="enumValue">Input enum we want try to convert to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.</param>
+        /// <param name="defaultValue">The default value to return when cannot convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/>.</param>
         /// <exception cref="ArgumentException"/>
         /// <returns><typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible to convert.</returns>
-        public static TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum enumValue)
+        public static TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum enumValue, TAnotherEnum defaultValue = default(TAnotherEnum))
             where TAnotherEnum : struct
         {
-            return enumValue.ToAnotherOrDefault<TAnotherEnum>(true);
+            return enumValue.ToAnotherOrDefault<TAnotherEnum>(true, defaultValue);
         }
 
         /// <summary>
@@ -90,14 +91,15 @@ namespace EnumConverterLibrary
         /// <typeparam name="TAnotherEnum">Enum that we want try to get after convert or default value of <typeparamref name="TAnotherEnum"/> if not possible.</typeparam>
         /// <param name="enumValue">Input enum we want try to convert to <typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible.</param>
         /// <param name="ignoreCase">Ignore or regard case.</param>
+        /// <param name="defaultValue">The default value to return when cannot convert <paramref name="enumValue"/> to <typeparamref name="TAnotherEnum"/>.</param>
         /// <exception cref="ArgumentException"/>
         /// <returns><typeparamref name="TAnotherEnum"/> or default value of <typeparamref name="TAnotherEnum"/> if not possible to convert.</returns>
-        public static TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum enumValue, bool ignoreCase)
+        public static TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum enumValue, bool ignoreCase, TAnotherEnum defaultValue = default(TAnotherEnum))
             where TAnotherEnum : struct
         {
             return enumValue.TryToAnother(ignoreCase, out TAnotherEnum anotherEnum)
                 ? anotherEnum
-                : default(TAnotherEnum);
+                : defaultValue;
         }
 
         /// <summary>
