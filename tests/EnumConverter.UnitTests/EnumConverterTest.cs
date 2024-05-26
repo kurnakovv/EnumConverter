@@ -243,7 +243,7 @@ namespace EnumConverterLibrary.UnitTests
             Assert.IsType<AnotherEnum>(anotherEnum);
             Assert.IsType<AnotherEnum>(anotherEnumWithDefaultValue);
             Assert.Equal(default(AnotherEnum), anotherEnum);
-            Assert.Equal(anotherEnumWithDefaultValue, defaultValue);
+            Assert.Equal(defaultValue, anotherEnumWithDefaultValue);
         }
 
         [Fact]
