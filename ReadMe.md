@@ -13,9 +13,9 @@
 </div>
 
 # Description
-<b>EnumConverter</b> is a little open source library for convert enum
+<b>EnumConverter</b> is a little open source library for converting enums.
 
-# How is it work
+# How it works
 
 Enums
 ``` cs
@@ -79,7 +79,7 @@ MyEnum invalidEnum = invalidValue.ToEnum<MyEnum>();
 Full docs [here](https://github.com/kurnakovv/EnumConverter/blob/main/DocsReadMe.md)
 
 # Reason
-I always forget how to convert enum and I create this library for convenience
+I always forget how to convert enum, so I created this library for convenience
 
 # Give a star ⭐
-I hope this library is useful for you, if so please give a star for this repository, thank you :)
+I hope this library is useful for you, if so, please give this repository a star, thank you :)
