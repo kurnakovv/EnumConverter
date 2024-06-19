@@ -306,11 +306,6 @@ AnotherEnum anotherEnumSecond = invalidSecondValue.ToAnotherOrDefault<AnotherEnu
 AnotherEnum anotherEnumWithDefaultValue = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>(defaultValue);
 AnotherEnum anotherEnumThird = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
 
-
-Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-Assert.Equal(AnotherEnum.Third, anotherEnumThird);
-
 // Output:
 // anotherEnumFirst - First
 // anotherEnumSecond - default(AnotherEnum)
