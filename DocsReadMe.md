@@ -260,3 +260,60 @@ IEnumerable<MyEnum> output = inputEnums.ToEnums<MyEnum>(); // or false if case i
 // 2 - MyEnum.Second
 // 3 - MyEnum.Third
 ```
+
+# ToAnotherOrDefault
+
+**Description**
+
+Convert input enum to another enum or default value if not possible.
+
+**Signature**
+
+TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, TAnotherEnum = default(TAnotherEnum)) where TAnotherEnum : struct
+
+**Type Parameters**
+
+`TAnotherEnum`  - Enum that we want to get after convert.
+
+**Parameters**
+
+- `Enum enumValue` - Input enum we want to convert to `TAnotherEnum` if possible.
+- `TAnotherEnum defaultValue` - default value that will convert to `TAnotherEnum` otherwise.
+
+**Returns**
+
+`TAnotherEnum`
+
+**Code examples**
+```csharp
+// Enums.
+public enum AnotherEnum { First, Second, Third }
+
+public enum InputEnum { First, Second, Third }
+public enum InvalidEnum { FirstInvalidValue = 0, SecondInvalidValue = 1, }
+
+
+// Input enums
+InputEnum inputEnumFirst = InputEnum.First;
+InvalidEnum invalidSecondValue = InvalidEnum.SecondInvalidValue;
+AnotherEnum defaultValue = AnotherEnum.Third;
+InputEnum inputEnumThird = InputEnum.Third;
+```
+
+```csharp
+AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>();
+AnotherEnum anotherEnumSecond = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>();
+AnotherEnum anotherEnumWithDefaultValue = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>(defaultValue);
+AnotherEnum anotherEnumThird = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
+
+
+Assert.Equal(AnotherEnum.First, anotherEnumFirst);
+Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
+Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+
+// Output:
+// anotherEnumFirst - First
+// anotherEnumSecond - default(AnotherEnum)
+// anotherEnumWithDefaultValue - defaultValue
+// anotherEnumThird - Third
+```
