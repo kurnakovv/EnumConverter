@@ -283,7 +283,7 @@ TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, bool [default = true], 
 
 **Returns**
 
-`TAnotherEnum`
+`TAnotherEnum` if possible, otherwise `defaultValue`.
 
 **Code examples**
 ```csharp
