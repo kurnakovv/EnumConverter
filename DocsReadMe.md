@@ -291,7 +291,7 @@ TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, bool [default = true], 
 public enum AnotherEnum { First, Second, Third }
 
 public enum InputEnum { First, Second, Third }
-public enum InvalidEnum { FirstInvalidValue = 0, SecondInvalidValue = 1, }
+public enum InvalidEnum { FirstInvalidValue, SecondInvalidValue }
 
 
 // Input enums
