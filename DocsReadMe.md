@@ -302,14 +302,14 @@ InputEnum inputEnumThird = InputEnum.Third;
 ```
 
 ```csharp
-AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>();
-AnotherEnum anotherEnumSecond = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>();
+AnotherEnum anotherEnumFirstCorrect = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>();
+AnotherEnum anotherEnumSecondInvalid = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>();
 AnotherEnum anotherEnumWithDefaultValue = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>(defaultValue);
-AnotherEnum anotherEnumThird = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
+AnotherEnum anotherEnumThirdWithIgnoreCase = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
 
 // Output:
-// anotherEnumFirst - First
-// anotherEnumSecond - default(AnotherEnum)
+// anotherEnumFirstCorrect - First
+// anotherEnumSecondInvalid - default(AnotherEnum)
 // anotherEnumWithDefaultValue - defaultValue
-// anotherEnumThird - Third
+// anotherEnumThirdWithIgnoreCase - Third (defaultValue)
 ```
