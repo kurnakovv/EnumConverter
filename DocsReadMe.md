@@ -269,7 +269,7 @@ Convert input enum to another enum or default value if not possible.
 
 **Signature**
 
-TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, TAnotherEnum = default(TAnotherEnum)) where TAnotherEnum : struct
+TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, bool [default = true], TAnotherEnum = default(TAnotherEnum)) where TAnotherEnum : struct
 
 **Type Parameters**
 
@@ -278,6 +278,7 @@ TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, TAnotherEnum = default(
 **Parameters**
 
 - `Enum enumValue` - Input enum we want to convert to `TAnotherEnum` if possible.
+- `bool ignoreCase` - Ignore or regard case.
 - `TAnotherEnum defaultValue` - default value that will convert to `TAnotherEnum` otherwise.
 
 **Returns**
