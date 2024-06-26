@@ -273,13 +273,13 @@ TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, bool [default = true], 
 
 **Type Parameters**
 
-`TAnotherEnum`  - Enum that we want to get after convert.
+`TAnotherEnum` - Enum that we want try to get after convert or `defaultValue` if not possible.
 
 **Parameters**
 
-- `Enum enumValue` - Input enum we want to convert to `TAnotherEnum` if possible.
+- `Enum enumValue` - Input enum we want try to convert to `TAnotherEnum` or `defaultValue` if not possible.
 - `bool ignoreCase` - Ignore or regard case.
-- `TAnotherEnum defaultValue` - default value that will convert to `TAnotherEnum` otherwise.
+- `defaultValue` - The default value to return when cannot convert `enumValue` to `TAnotherEnum`.
 
 **Returns**
 
