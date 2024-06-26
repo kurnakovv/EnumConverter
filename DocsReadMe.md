@@ -179,7 +179,7 @@ AnotherEnum anotherEnumThirdWithIgnoreCase = inputEnumThird.ToAnotherOrDefault<A
 // Output:
 // anotherEnumFirstCorrect - First
 // anotherEnumSecondInvalid - default(AnotherEnum)
-// anotherEnumWithDefaultValue - Third(defaultValue)
+// anotherEnumWithDefaultValue - Third (defaultValue)
 // anotherEnumThirdWithIgnoreCase - Third
 ```
 
