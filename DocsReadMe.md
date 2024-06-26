@@ -134,7 +134,7 @@ bool isConverted = invalidSecondValue.TryToAnother(out AnotherEnum anotherEnum);
 
 **Description**
 
-Convert input enum to another enum or default value if not possible.
+Convert `enumValue` to `TAnotherEnum` or `defaultValue` if not possible.
 
 **Signature**
 
