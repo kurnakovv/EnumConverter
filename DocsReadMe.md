@@ -166,20 +166,20 @@ public enum InvalidEnum { FirstInvalidValue, SecondInvalidValue }
 // Input enums
 InputEnum inputEnumFirst = InputEnum.First;
 InvalidEnum invalidSecondValue = InvalidEnum.SecondInvalidValue;
-AnotherEnum defaultValue = AnotherEnum.Third;
+AnotherEnum customDefaultValue = AnotherEnum.Third;
 InputEnum inputEnumThird = InputEnum.Third;
 ```
 
 ```csharp
 AnotherEnum anotherEnumFirstCorrect = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>();
 AnotherEnum anotherEnumSecondInvalid = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>();
-AnotherEnum anotherEnumWithDefaultValue = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>(defaultValue);
+AnotherEnum anotherEnumWithDefaultValue = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>(customDefaultValue);
 AnotherEnum anotherEnumThirdWithIgnoreCase = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
 
 // Output:
 // anotherEnumFirstCorrect - First
 // anotherEnumSecondInvalid - default(AnotherEnum)
-// anotherEnumWithDefaultValue - Third (defaultValue)
+// anotherEnumWithDefaultValue - Third (customDefaultValue)
 // anotherEnumThirdWithIgnoreCase - Third
 ```
 
