@@ -130,6 +130,59 @@ bool isConverted = invalidSecondValue.TryToAnother(out AnotherEnum anotherEnum);
 // [isConverted, anotherEnum] - [false, First]
 ```
 
+# ToAnotherOrDefault
+
+**Description**
+
+Convert input enum to another enum or default value if not possible.
+
+**Signature**
+
+TAnotherEnum ToAnotherOrDefault<TAnotherEnum>(this Enum, bool [default = true], TAnotherEnum = default(TAnotherEnum)) where TAnotherEnum : struct
+
+**Type Parameters**
+
+`TAnotherEnum` - Enum that we want try to get after convert or `defaultValue` if not possible.
+
+**Parameters**
+
+- `Enum enumValue` - Input enum we want try to convert to `TAnotherEnum` or `defaultValue` if not possible.
+- `bool ignoreCase` - Ignore or regard case.
+- `defaultValue` - The default value to return when cannot convert `enumValue` to `TAnotherEnum`.
+
+**Returns**
+
+`TAnotherEnum` or `defaultValue` if not possible to convert.
+
+**Code examples**
+```csharp
+// Enums.
+public enum AnotherEnum { First, Second, Third }
+
+public enum InputEnum { First, Second, Third }
+public enum InvalidEnum { FirstInvalidValue, SecondInvalidValue }
+
+
+// Input enums
+InputEnum inputEnumFirst = InputEnum.First;
+InvalidEnum invalidSecondValue = InvalidEnum.SecondInvalidValue;
+AnotherEnum customDefaultValue = AnotherEnum.Third;
+InputEnum inputEnumThird = InputEnum.Third;
+```
+
+```csharp
+AnotherEnum anotherEnumFirstCorrect = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>();
+AnotherEnum anotherEnumSecondInvalid = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>();
+AnotherEnum anotherEnumWithDefaultValue = invalidSecondValue.ToAnotherOrDefault<AnotherEnum>(customDefaultValue);
+AnotherEnum anotherEnumThirdWithIgnoreCase = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
+
+// Output:
+// anotherEnumFirstCorrect - First
+// anotherEnumSecondInvalid - default(AnotherEnum)
+// anotherEnumWithDefaultValue - Third (customDefaultValue)
+// anotherEnumThirdWithIgnoreCase - Third
+```
+
 # ToOther
 
 **Description**
