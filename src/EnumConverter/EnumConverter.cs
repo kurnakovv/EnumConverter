@@ -235,5 +235,37 @@ namespace EnumConverterLibrary
         {
             return stringValues.ToEnums<TEnum>(true);
         }
+
+        /// <summary>
+        /// Convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/> or <paramref name="defaultValue"/> if not possible.
+        /// </summary>
+        /// <remarks>ignoreCase = true.</remarks>
+        /// <typeparam name="TEnum">Enum that we want try to get after convert or <paramref name="defaultValue"/> if not possible.</typeparam>
+        /// <param name="stringValue">String we want try to convert to <typeparamref name="TEnum"/> or <paramref name="defaultValue"/> if not possible.</param>
+        /// <param name="defaultValue">The default value to return when cannot convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/>.</param>
+        /// <exception cref="ArgumentException"/>
+        /// <returns><typeparamref name="TEnum"/> or <paramref name="defaultValue"/> if not possible to convert.</returns>
+        public static TEnum ToEnumOrDefault<TEnum>(this string stringValue, TEnum defaultValue = default(TEnum))
+            where TEnum : struct, Enum
+        {
+            return stringValue.ToEnumOrDefault<TEnum>(true, defaultValue);
+        }
+
+        /// <summary>
+        /// Convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/> or <paramref name="defaultValue"/> if not possible.
+        /// </summary>
+        /// <typeparam name="TEnum">Enum that we want try to get after convert or <paramref name="defaultValue"/> if not possible.</typeparam>
+        /// <param name="stringValue">String we want try to convert to <typeparamref name="TEnum"/> or <paramref name="defaultValue"/> if not possible.</param>
+        /// <param name="ignoreCase">Ignore or regard case.</param>
+        /// <param name="defaultValue">The default value to return when cannot convert <paramref name="stringValue"/> to <typeparamref name="TEnum"/>.</param>
+        /// <exception cref="ArgumentException"/>
+        /// <returns><typeparamref name="TEnum"/> or <paramref name="defaultValue"/> if not possible to convert.</returns>
+        public static TEnum ToEnumOrDefault<TEnum>(this string stringValue, bool ignoreCase, TEnum defaultValue = default(TEnum))
+            where TEnum : struct, Enum
+        {
+            return stringValue.TryToEnum(ignoreCase, out TEnum outputEnum)
+                ? outputEnum
+                : defaultValue;
+        }
     }
 }
