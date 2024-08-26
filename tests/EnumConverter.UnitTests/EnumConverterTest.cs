@@ -1,4 +1,5 @@
 ﻿using EnumConverterLibrary.UnitTests.TestEnums;
+using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -496,5 +497,66 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(MyEnum.Second, result[1]);
             Assert.Equal(MyEnum.Third, result[2]);
         }
+
+        [Fact]
+        public void ToEnumOrDefault_CanConvertStringValueToEnum_MyEnum()
+        {
+            // Arrange.
+            string stringValueFirst = "First";
+            string stringValueSecond = "Second";
+            string stringValueThird = "Third";
+            // Act.
+            MyEnum myEnumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>();
+            MyEnum myEnumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>();
+            MyEnum myEnumThird = stringValueThird.ToEnumOrDefault<MyEnum>();
+            // Assert.
+            Assert.IsType<MyEnum>(myEnumFirst);
+            Assert.IsType<MyEnum>(myEnumSecond);
+            Assert.IsType<MyEnum>(myEnumThird);
+
+            Assert.Equal(MyEnum.First, myEnumFirst);
+            Assert.Equal(MyEnum.Second, myEnumSecond);
+            Assert.Equal(MyEnum.Third, myEnumThird);
+        }
+
+        [Fact]
+        public void ToEnumOrDefault_CanConvertStringToEnumsWithIgnoreCaseEqualsFalse_MyEnum()
+        {
+            // Arrange.
+            string stringValueFirst = "First";
+            string stringValueSecond = "Second";
+            string stringValueThird = "Third";
+            // Act.
+            MyEnum myEnumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>(false);
+            MyEnum myEnumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>(false);
+            MyEnum myEnumThird = stringValueThird.ToEnumOrDefault<MyEnum>(false);
+            // Assert.
+            Assert.IsType<MyEnum>(myEnumFirst);
+            Assert.IsType<MyEnum>(myEnumSecond);
+            Assert.IsType<MyEnum>(myEnumThird);
+
+            Assert.Equal(MyEnum.First, myEnumFirst);
+            Assert.Equal(MyEnum.Second, myEnumSecond);
+            Assert.Equal(MyEnum.Third, myEnumThird);
+        }
+
+        [Fact]
+        public void ToEnumOrDefault_CannotConvertInvalidEnum_DefaultEnumValue()
+        {
+            // Arrange.
+            string stringValueInvalid = "Blablabla";
+            MyEnum customDefaultValue = MyEnum.Third;
+
+            // Act.
+            MyEnum myEnum = stringValueInvalid.ToEnumOrDefault<MyEnum>();
+            MyEnum myEnumWithDefaultValue = stringValueInvalid.ToEnumOrDefault<MyEnum>(customDefaultValue);
+
+            // Assert.
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.IsType<MyEnum>(myEnumWithDefaultValue);
+            Assert.Equal(default(MyEnum), myEnum);
+            Assert.Equal(customDefaultValue, myEnumWithDefaultValue);
+        }
+
     }
 }
