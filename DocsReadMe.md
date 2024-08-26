@@ -313,3 +313,47 @@ IEnumerable<MyEnum> output = inputEnums.ToEnums<MyEnum>(); // or false if case i
 // 2 - MyEnum.Second
 // 3 - MyEnum.Third
 ```
+
+# ToEnumOrDefault
+
+**Description**
+
+Try convert string value to enum or return default value if not possible.
+
+**Signature**
+
+bool ToEnumOrDefault(this string, bool [default = true], TEnum [default = TEnum]) where TEnum : struct, Enum
+
+**Type Parameters**
+
+`TEnum` - Enum that we want try to get after convert.
+
+**Parameters**
+
+- `string stringValue` - Input string we want to convert to `TEnum`.
+- `bool ignoreCase` - Ignore or regard case.
+- `TEnum defaultValue` - TEnum or default of `TEnum`.
+
+**Returns**
+
+`TEnum` or `defaultValue` if not possible to convert.
+
+**Code examples**
+```csharp
+public enum MyEnum { First, Second, Third }
+
+```csharp
+string stringValueFirst = "First";
+string stringValueSecond = "Second";
+string stringValueInvalid = "Blablabla";
+
+MyEnum enumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>();
+MyEnum enumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>(false);
+MyEnum enumThird = stringValueInvalid.ToEnumOrDefault<MyEnum>(MyEnum.Third);
+
+// output
+// enumFirst - MyEnum.First
+// enumSecond - MyEnum.Second
+// enumThird - MyEnum.Third
+```
+
