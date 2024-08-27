@@ -1,5 +1,4 @@
 ﻿using EnumConverterLibrary.UnitTests.TestEnums;
-using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
