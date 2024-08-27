@@ -271,6 +271,7 @@ bool isConvertedThird = stringValueInvalid.TryToEnum(out MyEnum enumThird);
 // [isConvertedSecond, enumSecond] - [true, MyEnum.Second]
 // [isConvertedThird, enumThird] - [false, MyEnum.First]
 ```
+
 # ToEnumOrDefault
 
 **Description**
@@ -289,7 +290,7 @@ bool ToEnumOrDefault(this string, bool [default = true], TEnum [default = TEnum]
 
 - `string stringValue` - Input string we want to convert to `TEnum`.
 - `bool ignoreCase` - Ignore or regard case.
-- `TEnum defaultValue` - TEnum or default of `TEnum`.
+- `TEnum defaultValue` - `TEnum` or default of `TEnum`.
 
 **Returns**
 
@@ -298,6 +299,7 @@ bool ToEnumOrDefault(this string, bool [default = true], TEnum [default = TEnum]
 **Code examples**
 ```csharp
 public enum MyEnum { First, Second, Third }
+```
 
 ```csharp
 string stringValueFirst = "First";
