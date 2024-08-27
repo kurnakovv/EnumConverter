@@ -469,36 +469,6 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Fact]
-        public void ToEnums_CanConvertStringsToEnums_MyEnums()
-        {
-            IEnumerable<string> values = new List<string>()
-            {
-                "First", "Second", "Third"
-            };
-
-            List<MyEnum> result = values.ToEnums<MyEnum>().ToList();
-
-            Assert.Equal(MyEnum.First, result[0]);
-            Assert.Equal(MyEnum.Second, result[1]);
-            Assert.Equal(MyEnum.Third, result[2]);
-        }
-
-        [Fact]
-        public void ToEnums_CanConvertStringsToEnumsWithIgnoreCaseEqualsFalse_MyEnums()
-        {
-            IEnumerable<string> values = new List<string>()
-            {
-                "First", "Second", "Third"
-            };
-
-            List<MyEnum> result = values.ToEnums<MyEnum>(false).ToList();
-
-            Assert.Equal(MyEnum.First, result[0]);
-            Assert.Equal(MyEnum.Second, result[1]);
-            Assert.Equal(MyEnum.Third, result[2]);
-        }
-
-        [Fact]
         public void ToEnumOrDefault_CanConvertStringValueToEnum_MyEnum()
         {
             // Arrange.
@@ -558,5 +528,34 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(customDefaultValue, myEnumWithDefaultValue);
         }
 
+        [Fact]
+        public void ToEnums_CanConvertStringsToEnums_MyEnums()
+        {
+            IEnumerable<string> values = new List<string>()
+            {
+                "First", "Second", "Third"
+            };
+
+            List<MyEnum> result = values.ToEnums<MyEnum>().ToList();
+
+            Assert.Equal(MyEnum.First, result[0]);
+            Assert.Equal(MyEnum.Second, result[1]);
+            Assert.Equal(MyEnum.Third, result[2]);
+        }
+
+        [Fact]
+        public void ToEnums_CanConvertStringsToEnumsWithIgnoreCaseEqualsFalse_MyEnums()
+        {
+            IEnumerable<string> values = new List<string>()
+            {
+                "First", "Second", "Third"
+            };
+
+            List<MyEnum> result = values.ToEnums<MyEnum>(false).ToList();
+
+            Assert.Equal(MyEnum.First, result[0]);
+            Assert.Equal(MyEnum.Second, result[1]);
+            Assert.Equal(MyEnum.Third, result[2]);
+        }
     }
 }
