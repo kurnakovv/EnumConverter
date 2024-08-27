@@ -474,10 +474,12 @@ namespace EnumConverterLibrary.UnitTests
             string stringValueFirst = "First";
             string stringValueSecond = "Second";
             string stringValueThird = "Third";
+
             // Act.
             MyEnum myEnumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>();
             MyEnum myEnumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>();
             MyEnum myEnumThird = stringValueThird.ToEnumOrDefault<MyEnum>();
+
             // Assert.
             Assert.IsType<MyEnum>(myEnumFirst);
             Assert.IsType<MyEnum>(myEnumSecond);
@@ -489,16 +491,18 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Fact]
-        public void ToEnumOrDefault_CanConvertStringToEnumsWithIgnoreCaseEqualsFalse_MyEnum()
+        public void ToEnumOrDefault_CanConvertStringToEnumWithIgnoreCaseEqualsFalse_MyEnum()
         {
             // Arrange.
             string stringValueFirst = "First";
             string stringValueSecond = "Second";
             string stringValueThird = "Third";
+
             // Act.
             MyEnum myEnumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>(false);
             MyEnum myEnumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>(false);
             MyEnum myEnumThird = stringValueThird.ToEnumOrDefault<MyEnum>(false);
+
             // Assert.
             Assert.IsType<MyEnum>(myEnumFirst);
             Assert.IsType<MyEnum>(myEnumSecond);
