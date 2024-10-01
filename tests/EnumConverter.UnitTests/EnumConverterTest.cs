@@ -338,27 +338,20 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(default(MyEnum), anotherEnum);
         }
 
-        [Fact]
-        public void ToEnumOrDefault_CanConvertStringValueToEnum_MyEnum()
+        [Theory]
+        [InlineData ("First", MyEnum.First)]
+        [InlineData ("Second", MyEnum.Second)]
+        [InlineData ("Third", MyEnum.Third)]
+        public void ToEnumOrDefault_CanConvertStringValueToEnum_MyEnum(
+            string stringValue, 
+            MyEnum expectedEnum)
         {
-            // Arrange.
-            string stringValueFirst = "First";
-            string stringValueSecond = "Second";
-            string stringValueThird = "Third";
-
             // Act.
-            MyEnum myEnumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>();
-            MyEnum myEnumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>();
-            MyEnum myEnumThird = stringValueThird.ToEnumOrDefault<MyEnum>();
+            MyEnum myEnum = stringValue.ToEnumOrDefault<MyEnum>();
 
             // Assert.
-            Assert.IsType<MyEnum>(myEnumFirst);
-            Assert.IsType<MyEnum>(myEnumSecond);
-            Assert.IsType<MyEnum>(myEnumThird);
-
-            Assert.Equal(MyEnum.First, myEnumFirst);
-            Assert.Equal(MyEnum.Second, myEnumSecond);
-            Assert.Equal(MyEnum.Third, myEnumThird);
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.Equal(expectedEnum, myEnum);
         }
 
         [Fact]
