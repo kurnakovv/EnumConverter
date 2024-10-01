@@ -14,7 +14,6 @@ namespace EnumConverterLibrary.UnitTests
         [InlineData (InputEnum.Third, AnotherEnum.Third)]
         public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum(InputEnum inputEnum, AnotherEnum expectedEnum)
         {
-
             // Act.
             AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>();
 
@@ -23,35 +22,22 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal (expectedEnum, anotherEnum);
         }
 
-        [Fact]
-        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_AnotherEnum()
+        [Theory]
+        [InlineData (InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
+        [InlineData (InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
+        [InlineData (InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
+        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_AnotherEnum(
+            InputEnumLowerCase inputEnumLowerCase, 
+            InputEnumUpperCase inputEnumUpperCase, 
+            AnotherEnum expectedEnum)
         {
-            // Arrange.
-            InputEnumLowerCase inputEnum_first = InputEnumLowerCase.first;
-            InputEnumLowerCase inputEnum_second = InputEnumLowerCase.second;
-            InputEnumLowerCase inputEnum_third = InputEnumLowerCase.third;
-
-            InputEnumUpperCase inputEnumFIRST = InputEnumUpperCase.FIRST;
-            InputEnumUpperCase inputEnumSECOND = InputEnumUpperCase.SECOND;
-            InputEnumUpperCase inputEnumTHIRD = InputEnumUpperCase.THIRD;
-
             // Act.
-            AnotherEnum anotherEnumFirstLowerCase = inputEnum_first.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumSecondLowerCase = inputEnum_second.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumThirdLowerCase = inputEnum_third.ToAnother<AnotherEnum>();
-            
-            AnotherEnum anotherEnumFirstUpperCase = inputEnumFIRST.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumSecondUpperCase = inputEnumSECOND.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumThirdUpperCase = inputEnumTHIRD.ToAnother<AnotherEnum>();
+            AnotherEnum anotherEnumLowerCase = inputEnumLowerCase.ToAnother<AnotherEnum>();
+            AnotherEnum anotherEnumUpperCase = inputEnumUpperCase.ToAnother<AnotherEnum>();
 
             // Assert.
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstLowerCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondLowerCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdLowerCase);
-            
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstUpperCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondUpperCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdUpperCase);
+            Assert.Equal(expectedEnum, anotherEnumLowerCase);
+            Assert.Equal(expectedEnum, anotherEnumUpperCase);
         }
 
         [Fact]
