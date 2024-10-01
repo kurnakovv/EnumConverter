@@ -241,23 +241,19 @@ namespace EnumConverterLibrary.UnitTests
             // Assert.
             Assert.IsType<MyEnum>(myEnum);
             Assert.Equal(expectedEnum, myEnum);
-            
+
             Assert.IsType<MyEnum>(myEnumWithIgnoreCase);
             Assert.Equal(expectedEnum, myEnumWithIgnoreCase);
         }
 
-        [Fact]
-        public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException()
+        [Theory]
+        [InlineData ("FIRST")]
+        [InlineData ("second")]
+        [InlineData ("ThIrD")]
+        public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException(string ValueWithIgnoreCase)
         {
-            // Arrange.
-            string firstValueWithIgnoreCase = "FIRST";
-            string secondValueWithIgnoreCase = "second";
-            string thirdValueWithIgnoreCase = "ThIrD";
-
             // Assert.
-            Assert.Throws<ArgumentException>(() => firstValueWithIgnoreCase.ToEnum<MyEnum>(false));
-            Assert.Throws<ArgumentException>(() => secondValueWithIgnoreCase.ToEnum<MyEnum>(false));
-            Assert.Throws<ArgumentException>(() => thirdValueWithIgnoreCase.ToEnum<MyEnum>(false));
+            Assert.Throws<ArgumentException>(() => ValueWithIgnoreCase.ToEnum<MyEnum>(false));
         }
 
         [Fact]
