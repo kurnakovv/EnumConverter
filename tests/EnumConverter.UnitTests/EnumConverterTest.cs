@@ -267,31 +267,20 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Throws<ArgumentException>(() => invalidValue.ToEnum<MyEnum>(false));
         }
 
-        [Fact]
-        public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum()
+        [Theory]
+        [InlineData ("First", MyEnum.First)]
+        [InlineData ("Second", MyEnum.Second)]
+        [InlineData ("Third", MyEnum.Third)]
+        public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum(string stringValue, MyEnum expectedEnum)
         {
-            // Arrange.
-            string stringValueFirst = "First";
-            string stringValueSecond = "Second";
-            string stringValueThird = "Third";
 
             // Act.
-            bool isConvertedFirst = stringValueFirst.TryToEnum(out MyEnum enumFirst);
-            bool isConvertedSecond = stringValueSecond.TryToEnum(out MyEnum enumSecond);
-            bool isConvertedThird = stringValueThird.TryToEnum(out MyEnum enumThird);
+            bool isConverted = stringValue.TryToEnum(out MyEnum myEnum);
 
             // Assert.
-            Assert.True(isConvertedFirst);
-            Assert.True(isConvertedSecond);
-            Assert.True(isConvertedThird);
-
-            Assert.IsType<MyEnum>(enumFirst);
-            Assert.IsType<MyEnum>(enumSecond);
-            Assert.IsType<MyEnum>(enumThird);
-
-            Assert.Equal(MyEnum.First, enumFirst);
-            Assert.Equal(MyEnum.Second, enumSecond);
-            Assert.Equal(MyEnum.Third, enumThird);
+            Assert.True(isConverted);
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.Equal(expectedEnum, myEnum);
         }
 
         [Fact]
