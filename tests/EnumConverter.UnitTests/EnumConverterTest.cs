@@ -8,27 +8,19 @@ namespace EnumConverterLibrary.UnitTests
 {
     public class EnumConverterTest
     {
-        [Fact]
-        public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum()
+        [Theory]
+        [InlineData (InputEnum.First, AnotherEnum.First)]
+        [InlineData (InputEnum.Second, AnotherEnum.Second)]
+        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum(InputEnum inputEnum, AnotherEnum expectedEnum)
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
 
             // Act.
-            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumThird = inputEnumThird.ToAnother<AnotherEnum>();
+            AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>();
 
             // Assert.
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal (expectedEnum, anotherEnum);
         }
 
         [Fact]
