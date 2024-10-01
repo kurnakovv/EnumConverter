@@ -58,18 +58,15 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(expectedEnum, anotherEnum);
         }
 
-        [Fact]
-        public void ToAnother_CannotConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_ArgumentException()
+        [Theory]
+        [InlineData (InputEnumUpperCase.FIRST)]
+        [InlineData (InputEnumUpperCase.SECOND)]
+        [InlineData (InputEnumUpperCase.THIRD)]
+        public void ToAnother_CannotConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_ArgumentException(
+            InputEnumUpperCase inputEnum)
         {
-            // Arrange.
-            InputEnumUpperCase inputEnumFirst = InputEnumUpperCase.FIRST;
-            InputEnumUpperCase inputEnumSecond = InputEnumUpperCase.SECOND;
-            InputEnumUpperCase inputEnumThird = InputEnumUpperCase.THIRD;
-
             // Assert.
-            Assert.Throws<ArgumentException>(() => { inputEnumFirst.ToAnother<AnotherEnum>(false); });
-            Assert.Throws<ArgumentException>(() => { inputEnumSecond.ToAnother<AnotherEnum>(false); });
-            Assert.Throws<ArgumentException>(() => { inputEnumThird.ToAnother<AnotherEnum>(false); });
+            Assert.Throws<ArgumentException>(() => { inputEnum.ToAnother<AnotherEnum>(false); });
         }
 
         [Fact]
