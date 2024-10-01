@@ -12,7 +12,9 @@ namespace EnumConverterLibrary.UnitTests
         [InlineData (InputEnum.First, AnotherEnum.First)]
         [InlineData (InputEnum.Second, AnotherEnum.Second)]
         [InlineData (InputEnum.Third, AnotherEnum.Third)]
-        public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum(InputEnum inputEnum, AnotherEnum expectedEnum)
+        public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum(
+            InputEnum inputEnum, 
+            AnotherEnum expectedEnum)
         {
             // Act.
             AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>();
@@ -40,27 +42,20 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(expectedEnum, anotherEnumUpperCase);
         }
 
-        [Fact]
-        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum()
+        [Theory]
+        [InlineData (InputEnum.First, AnotherEnum.First)]
+        [InlineData (InputEnum.Second, AnotherEnum.Second)]
+        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum(
+            InputEnum inputEnum, 
+            AnotherEnum expectedEnum)
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
-
             // Act.
-            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnother<AnotherEnum>(false);
-            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnother<AnotherEnum>(false);
-            AnotherEnum anotherEnumThird = inputEnumThird.ToAnother<AnotherEnum>(false);
+            AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>(false);
 
             // Assert.
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal(expectedEnum, anotherEnum);
         }
 
         [Fact]
