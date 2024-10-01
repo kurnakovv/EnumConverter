@@ -84,41 +84,25 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(expectedEnum, anotherEnum);
         }
 
-        [Fact]
-        public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_TrueAndAnotherEnum()
+        [Theory]
+        [InlineData (InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
+        [InlineData (InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
+        [InlineData (InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
+        public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_TrueAndAnotherEnum(
+            InputEnumLowerCase inputEnumLowerCase,
+            InputEnumUpperCase inputEnumUpperCase,
+            AnotherEnum expectedEnum)
         {
-            // Arrange.
-            InputEnumLowerCase inputEnum_first = InputEnumLowerCase.first;
-            InputEnumLowerCase inputEnum_second = InputEnumLowerCase.second;
-            InputEnumLowerCase inputEnum_third = InputEnumLowerCase.third;
-
-            InputEnumUpperCase inputEnumFIRST = InputEnumUpperCase.FIRST;
-            InputEnumUpperCase inputEnumSECOND = InputEnumUpperCase.SECOND;
-            InputEnumUpperCase inputEnumTHIRD = InputEnumUpperCase.THIRD;
-
             // Act.
-            bool isConvertedFirstLowerCase = inputEnum_first.TryToAnother(true, out AnotherEnum anotherEnumFirstLowerCase);
-            bool isConvertedSecondLowerCase = inputEnum_second.TryToAnother(true, out AnotherEnum anotherEnumSecondLowerCase);
-            bool isConvertedThirdLowerCase = inputEnum_third.TryToAnother(true, out AnotherEnum anotherEnumThirdLowerCase);
-
-            bool isConvertedFirstUpperCase = inputEnumFIRST.TryToAnother(true, out AnotherEnum anotherEnumFirstUpperCase);
-            bool isConvertedSecondUpperCase = inputEnumSECOND.TryToAnother(true, out AnotherEnum anotherEnumSecondUpperCase);
-            bool isConvertedThirdUpperCase = inputEnumTHIRD.TryToAnother(true, out AnotherEnum anotherEnumThirdUpperCase);
+            bool isConvertedLowerCase = inputEnumLowerCase.TryToAnother(true, out AnotherEnum anotherEnumLowerCase);
+            bool isConvertedUpperCase = inputEnumUpperCase.TryToAnother(true, out AnotherEnum anotherEnumUpperCase);
 
             // Assert.
-            Assert.True(isConvertedFirstLowerCase);
-            Assert.True(isConvertedSecondLowerCase);
-            Assert.True(isConvertedThirdLowerCase);
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstLowerCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondLowerCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdLowerCase);
+            Assert.True(isConvertedLowerCase);
+            Assert.Equal(expectedEnum, anotherEnumLowerCase);
 
-            Assert.True(isConvertedFirstUpperCase);
-            Assert.True(isConvertedSecondUpperCase);
-            Assert.True(isConvertedThirdUpperCase);
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstUpperCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondUpperCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdUpperCase);
+            Assert.True(isConvertedUpperCase);
+            Assert.Equal(expectedEnum, anotherEnumUpperCase);
         }
 
         [Fact]
