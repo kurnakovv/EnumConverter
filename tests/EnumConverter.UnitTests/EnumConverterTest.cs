@@ -9,12 +9,13 @@ namespace EnumConverterLibrary.UnitTests
     public class EnumConverterTest
     {
         [Theory]
-        [InlineData (InputEnum.First, AnotherEnum.First)]
-        [InlineData (InputEnum.Second, AnotherEnum.Second)]
-        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
         public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum(
             InputEnum inputEnum, 
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>();
@@ -25,13 +26,14 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData (InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
-        [InlineData (InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
-        [InlineData (InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
+        [InlineData(InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
+        [InlineData(InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
+        [InlineData(InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
         public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_AnotherEnum(
             InputEnumLowerCase inputEnumLowerCase, 
             InputEnumUpperCase inputEnumUpperCase, 
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             AnotherEnum anotherEnumLowerCase = inputEnumLowerCase.ToAnother<AnotherEnum>();
@@ -43,12 +45,13 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData (InputEnum.First, AnotherEnum.First)]
-        [InlineData (InputEnum.Second, AnotherEnum.Second)]
-        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
         public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum(
             InputEnum inputEnum, 
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>(false);
@@ -59,23 +62,25 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData (InputEnumUpperCase.FIRST)]
-        [InlineData (InputEnumUpperCase.SECOND)]
-        [InlineData (InputEnumUpperCase.THIRD)]
+        [InlineData(InputEnumUpperCase.FIRST)]
+        [InlineData(InputEnumUpperCase.SECOND)]
+        [InlineData(InputEnumUpperCase.THIRD)]
         public void ToAnother_CannotConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_ArgumentException(
-            InputEnumUpperCase inputEnum)
+            InputEnumUpperCase inputEnum
+        )
         {
             // Assert.
             Assert.Throws<ArgumentException>(() => { inputEnum.ToAnother<AnotherEnum>(false); });
         }
 
         [Theory]
-        [InlineData (InputEnum.First, AnotherEnum.First)]
-        [InlineData (InputEnum.Second, AnotherEnum.Second)]
-        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
         public void TryToAnother_CanConvertInputEnumToAnotherEnum_TrueAndAnotherEnum(
             InputEnum inputEnum, 
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             bool isConverted = inputEnum.TryToAnother(out AnotherEnum anotherEnum);
@@ -87,13 +92,14 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData (InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
-        [InlineData (InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
-        [InlineData (InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
+        [InlineData(InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
+        [InlineData(InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
+        [InlineData(InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
         public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_TrueAndAnotherEnum(
             InputEnumLowerCase inputEnumLowerCase,
             InputEnumUpperCase inputEnumUpperCase,
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             bool isConvertedLowerCase = inputEnumLowerCase.TryToAnother(true, out AnotherEnum anotherEnumLowerCase);
@@ -108,12 +114,13 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData (InputEnum.First, AnotherEnum.First)]
-        [InlineData (InputEnum.Second, AnotherEnum.Second)]
-        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
         public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_TrueAndAnotherEnum(
             InputEnum inputEnum,
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             bool isConverted = inputEnum.TryToAnother(false, out AnotherEnum anotherEnum);
@@ -140,12 +147,13 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData (InputEnum.First, AnotherEnum.First)]
-        [InlineData (InputEnum.Second, AnotherEnum.Second)]
-        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
         public void ToAnotherOrDefault_CanConvertInputEnumToAnother_AnotherEnum(
             InputEnum inputEnum, 
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             AnotherEnum anotherEnum = inputEnum.ToAnotherOrDefault<AnotherEnum>();
@@ -174,12 +182,13 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData (InputEnum.First, AnotherEnum.First)]
-        [InlineData (InputEnum.Second, AnotherEnum.Second)]
-        [InlineData (InputEnum.Third, AnotherEnum.Third)]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
         public void ToAnotherOrDefault_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum(
             InputEnum inputEnum,
-            AnotherEnum expectedEnum)
+            AnotherEnum expectedEnum
+        )
         {
             // Act.
             AnotherEnum anotherEnum = inputEnum.ToAnotherOrDefault<AnotherEnum>(false);
@@ -226,13 +235,14 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData ("First", "FIRST", MyEnum.First)]
-        [InlineData ("Second", "second", MyEnum.Second)]
-        [InlineData ("Third", "ThIrD", MyEnum.Third)]
+        [InlineData("First", "FIRST", MyEnum.First)]
+        [InlineData("Second", "second", MyEnum.Second)]
+        [InlineData("Third", "ThIrD", MyEnum.Third)]
         public void ToEnum_CanConvertStringToEnum_MyEnum(
             string inputValue, 
             string inputValueWithIgnoreCase, 
-            MyEnum expectedEnum)
+            MyEnum expectedEnum
+        )
         {
             // Act.
             MyEnum myEnum = inputValue.ToEnum<MyEnum>();
@@ -247,10 +257,12 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData ("FIRST")]
-        [InlineData ("second")]
-        [InlineData ("ThIrD")]
-        public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException(string ValueWithIgnoreCase)
+        [InlineData("FIRST")]
+        [InlineData("second")]
+        [InlineData("ThIrD")]
+        public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException(
+            string ValueWithIgnoreCase
+        )
         {
             // Assert.
             Assert.Throws<ArgumentException>(() => ValueWithIgnoreCase.ToEnum<MyEnum>(false));
@@ -268,9 +280,9 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData ("First", MyEnum.First)]
-        [InlineData ("Second", MyEnum.Second)]
-        [InlineData ("Third", MyEnum.Third)]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
         public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum(string stringValue, MyEnum expectedEnum)
         {
 
@@ -284,13 +296,14 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData ("first", "FIRST", MyEnum.First)]
-        [InlineData ("second", "SECOND", MyEnum.Second)]
-        [InlineData ("third", "THIRD", MyEnum.Third)]
+        [InlineData("first", "FIRST", MyEnum.First)]
+        [InlineData("second", "SECOND", MyEnum.Second)]
+        [InlineData("third", "THIRD", MyEnum.Third)]
         public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCase_TrueAndEnum(
             string stringValueLowerCase,
             string stringValueUpperCase,
-            MyEnum expectedEnum)
+            MyEnum expectedEnum
+        )
         {
             // Act.
             bool isConvertedLowerCase = stringValueLowerCase.TryToEnum(true, out MyEnum enumLowerCase);
@@ -306,9 +319,9 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData ("First", MyEnum.First)]
-        [InlineData ("Second", MyEnum.Second)]
-        [InlineData ("Third", MyEnum.Third)]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
         public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCaseEqualsFalse_TrueAndEnum(
             string stringValue,
             MyEnum expectedEnum
@@ -339,12 +352,13 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData ("First", MyEnum.First)]
-        [InlineData ("Second", MyEnum.Second)]
-        [InlineData ("Third", MyEnum.Third)]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
         public void ToEnumOrDefault_CanConvertStringValueToEnum_MyEnum(
             string stringValue, 
-            MyEnum expectedEnum)
+            MyEnum expectedEnum
+        )
         {
             // Act.
             MyEnum myEnum = stringValue.ToEnumOrDefault<MyEnum>();
@@ -355,12 +369,13 @@ namespace EnumConverterLibrary.UnitTests
         }
 
         [Theory]
-        [InlineData ("First", MyEnum.First)]
-        [InlineData ("Second", MyEnum.Second)]
-        [InlineData ("Third", MyEnum.Third)]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
         public void ToEnumOrDefault_CanConvertStringToEnumWithIgnoreCaseEqualsFalse_MyEnum(
             string stringValue, 
-            MyEnum expectedEnum)
+            MyEnum expectedEnum
+        )
         {
             // Act.
             MyEnum myEnum = stringValue.ToEnumOrDefault<MyEnum>(false);
