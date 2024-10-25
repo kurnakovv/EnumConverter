@@ -384,7 +384,6 @@ namespace EnumConverterLibrary.UnitTests
 
             // Assert.
             Assert.IsType<MyEnum>(myEnum);
-
             Assert.Equal(expectedEnum, myEnum);
         }
 
