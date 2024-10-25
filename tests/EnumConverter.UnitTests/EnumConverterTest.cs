@@ -261,11 +261,11 @@ namespace EnumConverterLibrary.UnitTests
         [InlineData("second")]
         [InlineData("ThIrD")]
         public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException(
-            string ValueWithIgnoreCase
+            string valueWithIgnoreCase
         )
         {
             // Assert.
-            Assert.Throws<ArgumentException>(() => ValueWithIgnoreCase.ToEnum<MyEnum>(false));
+            Assert.Throws<ArgumentException>(() => valueWithIgnoreCase.ToEnum<MyEnum>(false));
         }
 
         [Fact]
@@ -283,7 +283,9 @@ namespace EnumConverterLibrary.UnitTests
         [InlineData("First", MyEnum.First)]
         [InlineData("Second", MyEnum.Second)]
         [InlineData("Third", MyEnum.Third)]
-        public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum(string stringValue, MyEnum expectedEnum)
+        public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum(
+            string stringValue, MyEnum expectedEnum
+        )
         {
 
             // Act.
