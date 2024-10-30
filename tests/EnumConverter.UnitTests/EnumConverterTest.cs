@@ -284,7 +284,8 @@ namespace EnumConverterLibrary.UnitTests
         [InlineData("Second", MyEnum.Second)]
         [InlineData("Third", MyEnum.Third)]
         public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum(
-            string stringValue, MyEnum expectedEnum
+            string stringValue, 
+            MyEnum expectedEnum
         )
         {
 
