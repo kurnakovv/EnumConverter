@@ -8,186 +8,127 @@ namespace EnumConverterLibrary.UnitTests
 {
     public class EnumConverterTest
     {
-        [Fact]
-        public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum()
+        [Theory]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
+        public void ToAnother_CanConvertInputEnumToAnotherEnum_AnotherEnum(
+            InputEnum inputEnum, 
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
-
             // Act.
-            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumThird = inputEnumThird.ToAnother<AnotherEnum>();
+            AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>();
 
             // Assert.
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal (expectedEnum, anotherEnum);
         }
 
-        [Fact]
-        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_AnotherEnum()
+        [Theory]
+        [InlineData(InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
+        [InlineData(InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
+        [InlineData(InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
+        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_AnotherEnum(
+            InputEnumLowerCase inputEnumLowerCase, 
+            InputEnumUpperCase inputEnumUpperCase, 
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnumLowerCase inputEnum_first = InputEnumLowerCase.first;
-            InputEnumLowerCase inputEnum_second = InputEnumLowerCase.second;
-            InputEnumLowerCase inputEnum_third = InputEnumLowerCase.third;
-
-            InputEnumUpperCase inputEnumFIRST = InputEnumUpperCase.FIRST;
-            InputEnumUpperCase inputEnumSECOND = InputEnumUpperCase.SECOND;
-            InputEnumUpperCase inputEnumTHIRD = InputEnumUpperCase.THIRD;
-
             // Act.
-            AnotherEnum anotherEnumFirstLowerCase = inputEnum_first.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumSecondLowerCase = inputEnum_second.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumThirdLowerCase = inputEnum_third.ToAnother<AnotherEnum>();
-            
-            AnotherEnum anotherEnumFirstUpperCase = inputEnumFIRST.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumSecondUpperCase = inputEnumSECOND.ToAnother<AnotherEnum>();
-            AnotherEnum anotherEnumThirdUpperCase = inputEnumTHIRD.ToAnother<AnotherEnum>();
+            AnotherEnum anotherEnumLowerCase = inputEnumLowerCase.ToAnother<AnotherEnum>();
+            AnotherEnum anotherEnumUpperCase = inputEnumUpperCase.ToAnother<AnotherEnum>();
 
             // Assert.
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstLowerCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondLowerCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdLowerCase);
-            
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstUpperCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondUpperCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdUpperCase);
+            Assert.Equal(expectedEnum, anotherEnumLowerCase);
+            Assert.Equal(expectedEnum, anotherEnumUpperCase);
         }
 
-        [Fact]
-        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum()
+        [Theory]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
+        public void ToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum(
+            InputEnum inputEnum, 
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
-
             // Act.
-            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnother<AnotherEnum>(false);
-            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnother<AnotherEnum>(false);
-            AnotherEnum anotherEnumThird = inputEnumThird.ToAnother<AnotherEnum>(false);
+            AnotherEnum anotherEnum = inputEnum.ToAnother<AnotherEnum>(false);
 
             // Assert.
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal(expectedEnum, anotherEnum);
         }
 
-        [Fact]
-        public void ToAnother_CannotConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_ArgumentException()
+        [Theory]
+        [InlineData(InputEnumUpperCase.FIRST)]
+        [InlineData(InputEnumUpperCase.SECOND)]
+        [InlineData(InputEnumUpperCase.THIRD)]
+        public void ToAnother_CannotConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_ArgumentException(
+            InputEnumUpperCase inputEnum
+        )
         {
-            // Arrange.
-            InputEnumUpperCase inputEnumFirst = InputEnumUpperCase.FIRST;
-            InputEnumUpperCase inputEnumSecond = InputEnumUpperCase.SECOND;
-            InputEnumUpperCase inputEnumThird = InputEnumUpperCase.THIRD;
-
             // Assert.
-            Assert.Throws<ArgumentException>(() => { inputEnumFirst.ToAnother<AnotherEnum>(false); });
-            Assert.Throws<ArgumentException>(() => { inputEnumSecond.ToAnother<AnotherEnum>(false); });
-            Assert.Throws<ArgumentException>(() => { inputEnumThird.ToAnother<AnotherEnum>(false); });
+            Assert.Throws<ArgumentException>(() => { inputEnum.ToAnother<AnotherEnum>(false); });
         }
 
-        [Fact]
-        public void TryToAnother_CanConvertInputEnumToAnotherEnum_TrueAndAnotherEnum()
+        [Theory]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
+        public void TryToAnother_CanConvertInputEnumToAnotherEnum_TrueAndAnotherEnum(
+            InputEnum inputEnum, 
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
-
             // Act.
-            bool isConvertedFirst = inputEnumFirst.TryToAnother(out AnotherEnum anotherEnumFirst);
-            bool isConvertedSecond = inputEnumSecond.TryToAnother(out AnotherEnum anotherEnumSecond);
-            bool isConvertedThird = inputEnumThird.TryToAnother(out AnotherEnum anotherEnumThird);
+            bool isConverted = inputEnum.TryToAnother(out AnotherEnum anotherEnum);
 
             // Assert.
-            Assert.True(isConvertedFirst);
-            Assert.True(isConvertedSecond);
-            Assert.True(isConvertedThird);
-
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.True(isConverted);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal(expectedEnum, anotherEnum);
         }
 
-        [Fact]
-        public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_TrueAndAnotherEnum()
+        [Theory]
+        [InlineData(InputEnumLowerCase.first, InputEnumUpperCase.FIRST, AnotherEnum.First)]
+        [InlineData(InputEnumLowerCase.second, InputEnumUpperCase.SECOND, AnotherEnum.Second)]
+        [InlineData(InputEnumLowerCase.third, InputEnumUpperCase.THIRD, AnotherEnum.Third)]
+        public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCase_TrueAndAnotherEnum(
+            InputEnumLowerCase inputEnumLowerCase,
+            InputEnumUpperCase inputEnumUpperCase,
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnumLowerCase inputEnum_first = InputEnumLowerCase.first;
-            InputEnumLowerCase inputEnum_second = InputEnumLowerCase.second;
-            InputEnumLowerCase inputEnum_third = InputEnumLowerCase.third;
-
-            InputEnumUpperCase inputEnumFIRST = InputEnumUpperCase.FIRST;
-            InputEnumUpperCase inputEnumSECOND = InputEnumUpperCase.SECOND;
-            InputEnumUpperCase inputEnumTHIRD = InputEnumUpperCase.THIRD;
-
             // Act.
-            bool isConvertedFirstLowerCase = inputEnum_first.TryToAnother(true, out AnotherEnum anotherEnumFirstLowerCase);
-            bool isConvertedSecondLowerCase = inputEnum_second.TryToAnother(true, out AnotherEnum anotherEnumSecondLowerCase);
-            bool isConvertedThirdLowerCase = inputEnum_third.TryToAnother(true, out AnotherEnum anotherEnumThirdLowerCase);
-
-            bool isConvertedFirstUpperCase = inputEnumFIRST.TryToAnother(true, out AnotherEnum anotherEnumFirstUpperCase);
-            bool isConvertedSecondUpperCase = inputEnumSECOND.TryToAnother(true, out AnotherEnum anotherEnumSecondUpperCase);
-            bool isConvertedThirdUpperCase = inputEnumTHIRD.TryToAnother(true, out AnotherEnum anotherEnumThirdUpperCase);
+            bool isConvertedLowerCase = inputEnumLowerCase.TryToAnother(true, out AnotherEnum anotherEnumLowerCase);
+            bool isConvertedUpperCase = inputEnumUpperCase.TryToAnother(true, out AnotherEnum anotherEnumUpperCase);
 
             // Assert.
-            Assert.True(isConvertedFirstLowerCase);
-            Assert.True(isConvertedSecondLowerCase);
-            Assert.True(isConvertedThirdLowerCase);
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstLowerCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondLowerCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdLowerCase);
+            Assert.True(isConvertedLowerCase);
+            Assert.Equal(expectedEnum, anotherEnumLowerCase);
 
-            Assert.True(isConvertedFirstUpperCase);
-            Assert.True(isConvertedSecondUpperCase);
-            Assert.True(isConvertedThirdUpperCase);
-            Assert.Equal(AnotherEnum.First, anotherEnumFirstUpperCase);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecondUpperCase);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThirdUpperCase);
+            Assert.True(isConvertedUpperCase);
+            Assert.Equal(expectedEnum, anotherEnumUpperCase);
         }
 
-        [Fact]
-        public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_TrueAndAnotherEnum()
+        [Theory]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
+        public void TryToAnother_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_TrueAndAnotherEnum(
+            InputEnum inputEnum,
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
-
             // Act.
-            bool isConvertedFirst = inputEnumFirst.TryToAnother(false, out AnotherEnum anotherEnumFirst);
-            bool isConvertedSecond = inputEnumSecond.TryToAnother(false, out AnotherEnum anotherEnumSecond);
-            bool isConvertedThird = inputEnumThird.TryToAnother(false, out AnotherEnum anotherEnumThird);
+            bool isConverted = inputEnum.TryToAnother(false, out AnotherEnum anotherEnum);
 
             // Assert.
-            Assert.True(isConvertedFirst);
-            Assert.True(isConvertedSecond);
-            Assert.True(isConvertedThird);
-
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.True(isConverted);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal(expectedEnum, anotherEnum);
         }
 
         [Fact]
@@ -205,27 +146,21 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(default(AnotherEnum), anotherEnum);
         }
 
-        [Fact]
-        public void ToAnotherOrDefault_CanConvertInputEnumToAnother_AnotherEnum()
+        [Theory]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
+        public void ToAnotherOrDefault_CanConvertInputEnumToAnother_AnotherEnum(
+            InputEnum inputEnum, 
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
-
             // Act.
-            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>();
-            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnotherOrDefault<AnotherEnum>();
-            AnotherEnum anotherEnumThird = inputEnumThird.ToAnotherOrDefault<AnotherEnum>();
+            AnotherEnum anotherEnum = inputEnum.ToAnotherOrDefault<AnotherEnum>();
 
             // Assert.
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal(expectedEnum, anotherEnum);
         }
 
         [Fact]
@@ -246,39 +181,36 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(customDefaultValue, anotherEnumWithDefaultValue);
         }
 
-        [Fact]
-        public void ToAnotherOrDefault_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum()
+        [Theory]
+        [InlineData(InputEnum.First, AnotherEnum.First)]
+        [InlineData(InputEnum.Second, AnotherEnum.Second)]
+        [InlineData(InputEnum.Third, AnotherEnum.Third)]
+        public void ToAnotherOrDefault_CanConvertInputEnumToAnotherEnumWithIgnoreCaseEqualsFalse_AnotherEnum(
+            InputEnum inputEnum,
+            AnotherEnum expectedEnum
+        )
         {
-            // Arrange.
-            InputEnum inputEnumFirst = InputEnum.First;
-            InputEnum inputEnumSecond = InputEnum.Second;
-            InputEnum inputEnumThird = InputEnum.Third;
-
             // Act.
-            AnotherEnum anotherEnumFirst = inputEnumFirst.ToAnotherOrDefault<AnotherEnum>(false);
-            AnotherEnum anotherEnumSecond = inputEnumSecond.ToAnotherOrDefault<AnotherEnum>(false);
-            AnotherEnum anotherEnumThird = inputEnumThird.ToAnotherOrDefault<AnotherEnum>(false);
+            AnotherEnum anotherEnum = inputEnum.ToAnotherOrDefault<AnotherEnum>(false);
 
             // Assert.
-            Assert.IsType<AnotherEnum>(anotherEnumFirst);
-            Assert.IsType<AnotherEnum>(anotherEnumSecond);
-            Assert.IsType<AnotherEnum>(anotherEnumThird);
-
-            Assert.Equal(AnotherEnum.First, anotherEnumFirst);
-            Assert.Equal(AnotherEnum.Second, anotherEnumSecond);
-            Assert.Equal(AnotherEnum.Third, anotherEnumThird);
+            Assert.IsType<AnotherEnum>(anotherEnum);
+            Assert.Equal(expectedEnum, anotherEnum);
         }
 
         [Fact]
         public void ToOther_CanConvertInputEnumsToOtherEnums_OtherEnums()
         {
+            // Arrange.
             IEnumerable<InputEnum> inputEnums = new List<InputEnum>()
             {
                 InputEnum.First, InputEnum.Second, InputEnum.Third,
             };
 
+            // Act.
             List<AnotherEnum> result = inputEnums.ToOther<InputEnum, AnotherEnum>().ToList();
 
+            // Assert.
             Assert.Equal(AnotherEnum.First, result[0]);
             Assert.Equal(AnotherEnum.Second, result[1]);
             Assert.Equal(AnotherEnum.Third, result[2]);
@@ -287,67 +219,53 @@ namespace EnumConverterLibrary.UnitTests
         [Fact]
         public void ToOther_CanConvertInputEnumsToOtherEnumsWithIgnoreCaseEqualsFalse_OtherEnums()
         {
+            // Arrange.
             IEnumerable<InputEnum> inputEnums = new List<InputEnum>()
             {
                 InputEnum.First, InputEnum.Second, InputEnum.Third,
             };
 
+            // Act.
             List<AnotherEnum> result = inputEnums.ToOther<InputEnum, AnotherEnum>(false).ToList();
 
+            // Assert.
             Assert.Equal(AnotherEnum.First, result[0]);
             Assert.Equal(AnotherEnum.Second, result[1]);
             Assert.Equal(AnotherEnum.Third, result[2]);
         }
 
-        [Fact]
-        public void ToEnum_CanConvertStringToEnum_MyEnum()
+        [Theory]
+        [InlineData("First", "FIRST", MyEnum.First)]
+        [InlineData("Second", "second", MyEnum.Second)]
+        [InlineData("Third", "ThIrD", MyEnum.Third)]
+        public void ToEnum_CanConvertStringToEnum_MyEnum(
+            string inputValue, 
+            string inputValueWithIgnoreCase, 
+            MyEnum expectedEnum
+        )
         {
-            // Arrange.
-            string firstValue = "First";
-            string secondValue = "Second";
-            string thirdValue = "Third";
-
-            string firstValueWithIgnoreCase = "FIRST";
-            string secondValueWithIgnoreCase = "second";
-            string thirdValueWithIgnoreCase = "ThIrD";
-
             // Act.
-            MyEnum myEnumFirstValue = firstValue.ToEnum<MyEnum>();
-            MyEnum myEnumSecondValue = secondValue.ToEnum<MyEnum>();
-            MyEnum myEnumThirdValue = thirdValue.ToEnum<MyEnum>();
-
-            MyEnum myEnumFirstValueWithIgnoreCase = firstValueWithIgnoreCase.ToEnum<MyEnum>();
-            MyEnum myEnumSecondValueWithIgnoreCase = secondValueWithIgnoreCase.ToEnum<MyEnum>();
-            MyEnum myEnumThirdValueWithIgnoreCase = thirdValueWithIgnoreCase.ToEnum<MyEnum>();
+            MyEnum myEnum = inputValue.ToEnum<MyEnum>();
+            MyEnum myEnumWithIgnoreCase = inputValueWithIgnoreCase.ToEnum<MyEnum>();
 
             // Assert.
-            Assert.IsType<MyEnum>(myEnumFirstValue);
-            Assert.IsType<MyEnum>(myEnumSecondValue);
-            Assert.IsType<MyEnum>(myEnumThirdValue);
-            Assert.Equal(MyEnum.First, myEnumFirstValue);
-            Assert.Equal(MyEnum.Second, myEnumSecondValue);
-            Assert.Equal(MyEnum.Third, myEnumThirdValue);
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.Equal(expectedEnum, myEnum);
 
-            Assert.IsType<MyEnum>(myEnumFirstValueWithIgnoreCase);
-            Assert.IsType<MyEnum>(myEnumSecondValueWithIgnoreCase);
-            Assert.IsType<MyEnum>(myEnumThirdValueWithIgnoreCase);
-            Assert.Equal(MyEnum.First, myEnumFirstValueWithIgnoreCase);
-            Assert.Equal(MyEnum.Second, myEnumSecondValueWithIgnoreCase);
-            Assert.Equal(MyEnum.Third, myEnumThirdValueWithIgnoreCase);
+            Assert.IsType<MyEnum>(myEnumWithIgnoreCase);
+            Assert.Equal(expectedEnum, myEnumWithIgnoreCase);
         }
 
-        [Fact]
-        public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException()
+        [Theory]
+        [InlineData("FIRST")]
+        [InlineData("second")]
+        [InlineData("ThIrD")]
+        public void ToEnum_CannotConvertValidStringWithIgnoreCaseIfIgnoreCaseEqualsFalse_ArgumentException(
+            string valueWithIgnoreCase
+        )
         {
-            // Arrange.
-            string firstValueWithIgnoreCase = "FIRST";
-            string secondValueWithIgnoreCase = "second";
-            string thirdValueWithIgnoreCase = "ThIrD";
-
             // Assert.
-            Assert.Throws<ArgumentException>(() => firstValueWithIgnoreCase.ToEnum<MyEnum>(false));
-            Assert.Throws<ArgumentException>(() => secondValueWithIgnoreCase.ToEnum<MyEnum>(false));
-            Assert.Throws<ArgumentException>(() => thirdValueWithIgnoreCase.ToEnum<MyEnum>(false));
+            Assert.Throws<ArgumentException>(() => valueWithIgnoreCase.ToEnum<MyEnum>(false));
         }
 
         [Fact]
@@ -361,95 +279,64 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Throws<ArgumentException>(() => invalidValue.ToEnum<MyEnum>(false));
         }
 
-        [Fact]
-        public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum()
+        [Theory]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
+        public void TryToEnum_CanConvertStringValueToEnum_TrueAndEnum(
+            string stringValue, 
+            MyEnum expectedEnum
+        )
         {
-            // Arrange.
-            string stringValueFirst = "First";
-            string stringValueSecond = "Second";
-            string stringValueThird = "Third";
 
             // Act.
-            bool isConvertedFirst = stringValueFirst.TryToEnum(out MyEnum enumFirst);
-            bool isConvertedSecond = stringValueSecond.TryToEnum(out MyEnum enumSecond);
-            bool isConvertedThird = stringValueThird.TryToEnum(out MyEnum enumThird);
+            bool isConverted = stringValue.TryToEnum(out MyEnum myEnum);
 
             // Assert.
-            Assert.True(isConvertedFirst);
-            Assert.True(isConvertedSecond);
-            Assert.True(isConvertedThird);
-
-            Assert.IsType<MyEnum>(enumFirst);
-            Assert.IsType<MyEnum>(enumSecond);
-            Assert.IsType<MyEnum>(enumThird);
-
-            Assert.Equal(MyEnum.First, enumFirst);
-            Assert.Equal(MyEnum.Second, enumSecond);
-            Assert.Equal(MyEnum.Third, enumThird);
+            Assert.True(isConverted);
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.Equal(expectedEnum, myEnum);
         }
 
-        [Fact]
-        public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCase_TrueAndEnum()
+        [Theory]
+        [InlineData("first", "FIRST", MyEnum.First)]
+        [InlineData("second", "SECOND", MyEnum.Second)]
+        [InlineData("third", "THIRD", MyEnum.Third)]
+        public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCase_TrueAndEnum(
+            string stringValueLowerCase,
+            string stringValueUpperCase,
+            MyEnum expectedEnum
+        )
         {
-            // Arrange.
-            string stringValue_first = "first";
-            string stringValue_second = "second";
-            string stringValue_third = "third";
-
-            string stringValueFIRST = "FIRST";
-            string stringValueSECOND = "SECOND";
-            string stringValueTHIRD = "THIRD";
-
             // Act.
-            bool isConvertedFirstLowerCase = stringValue_first.TryToEnum(true, out MyEnum enumFirstLowerCase);
-            bool isConvertedSecondLowerCase = stringValue_second.TryToEnum(true, out MyEnum enumSecondLowerCase);
-            bool isConvertedThirdLowerCase = stringValue_third.TryToEnum(true, out MyEnum enumThirdLowerCase);
-
-            bool isConvertedFirstUpperCase = stringValueFIRST.TryToEnum(true, out MyEnum enumFirstUpperCase);
-            bool isConvertedSecondUpperCase = stringValueSECOND.TryToEnum(true, out MyEnum enumSecondUpperCase);
-            bool isConvertedThirdUpperCase = stringValueTHIRD.TryToEnum(true, out MyEnum enumThirdUpperCase);
+            bool isConvertedLowerCase = stringValueLowerCase.TryToEnum(true, out MyEnum enumLowerCase);
+            bool isConvertedUpperCase = stringValueUpperCase.TryToEnum(true, out MyEnum enumUpperCase);
 
             // Assert.
-            Assert.True(isConvertedFirstLowerCase);
-            Assert.True(isConvertedSecondLowerCase);
-            Assert.True(isConvertedThirdLowerCase);
-            Assert.Equal(MyEnum.First, enumFirstLowerCase);
-            Assert.Equal(MyEnum.Second, enumSecondLowerCase);
-            Assert.Equal(MyEnum.Third, enumThirdLowerCase);
+            Assert.True(isConvertedLowerCase);
+            Assert.Equal(expectedEnum, enumLowerCase);
 
-            Assert.True(isConvertedFirstUpperCase);
-            Assert.True(isConvertedSecondUpperCase);
-            Assert.True(isConvertedThirdUpperCase);
-            Assert.Equal(MyEnum.First, enumFirstUpperCase);
-            Assert.Equal(MyEnum.Second, enumSecondUpperCase);
-            Assert.Equal(MyEnum.Third, enumThirdUpperCase);
+            Assert.True(isConvertedUpperCase);
+            Assert.Equal(expectedEnum, enumUpperCase);
+
         }
 
-        [Fact]
-        public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCaseEqualsFalse_TrueAndEnum()
+        [Theory]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
+        public void TryToEnum_CanConvertStringValueToEnumWithIgnoreCaseEqualsFalse_TrueAndEnum(
+            string stringValue,
+            MyEnum expectedEnum
+        )
         {
-            // Arrange.
-            string stringValueFirst = "First";
-            string stringValueSecond = "Second";
-            string stringValueThird = "Third";
-
             // Act.
-            bool isConvertedFirst = stringValueFirst.TryToEnum(false, out MyEnum enumFirst);
-            bool isConvertedSecond = stringValueSecond.TryToEnum(false, out MyEnum enumSecond);
-            bool isConvertedThird = stringValueThird.TryToEnum(false, out MyEnum enumThird);
+            bool isConverted = stringValue.TryToEnum(false, out MyEnum myEnum);
 
             // Assert.
-            Assert.True(isConvertedFirst);
-            Assert.True(isConvertedSecond);
-            Assert.True(isConvertedThird);
-
-            Assert.IsType<MyEnum>(enumFirst);
-            Assert.IsType<MyEnum>(enumSecond);
-            Assert.IsType<MyEnum>(enumThird);
-
-            Assert.Equal(MyEnum.First, enumFirst);
-            Assert.Equal(MyEnum.Second, enumSecond);
-            Assert.Equal(MyEnum.Third, enumThird);
+            Assert.True(isConverted);
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.Equal(expectedEnum, myEnum);
         }
 
         [Fact]
@@ -467,50 +354,38 @@ namespace EnumConverterLibrary.UnitTests
             Assert.Equal(default(MyEnum), anotherEnum);
         }
 
-        [Fact]
-        public void ToEnumOrDefault_CanConvertStringValueToEnum_MyEnum()
+        [Theory]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
+        public void ToEnumOrDefault_CanConvertStringValueToEnum_MyEnum(
+            string stringValue, 
+            MyEnum expectedEnum
+        )
         {
-            // Arrange.
-            string stringValueFirst = "First";
-            string stringValueSecond = "Second";
-            string stringValueThird = "Third";
-
             // Act.
-            MyEnum myEnumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>();
-            MyEnum myEnumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>();
-            MyEnum myEnumThird = stringValueThird.ToEnumOrDefault<MyEnum>();
+            MyEnum myEnum = stringValue.ToEnumOrDefault<MyEnum>();
 
             // Assert.
-            Assert.IsType<MyEnum>(myEnumFirst);
-            Assert.IsType<MyEnum>(myEnumSecond);
-            Assert.IsType<MyEnum>(myEnumThird);
-
-            Assert.Equal(MyEnum.First, myEnumFirst);
-            Assert.Equal(MyEnum.Second, myEnumSecond);
-            Assert.Equal(MyEnum.Third, myEnumThird);
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.Equal(expectedEnum, myEnum);
         }
 
-        [Fact]
-        public void ToEnumOrDefault_CanConvertStringToEnumWithIgnoreCaseEqualsFalse_MyEnum()
+        [Theory]
+        [InlineData("First", MyEnum.First)]
+        [InlineData("Second", MyEnum.Second)]
+        [InlineData("Third", MyEnum.Third)]
+        public void ToEnumOrDefault_CanConvertStringToEnumWithIgnoreCaseEqualsFalse_MyEnum(
+            string stringValue, 
+            MyEnum expectedEnum
+        )
         {
-            // Arrange.
-            string stringValueFirst = "First";
-            string stringValueSecond = "Second";
-            string stringValueThird = "Third";
-
             // Act.
-            MyEnum myEnumFirst = stringValueFirst.ToEnumOrDefault<MyEnum>(false);
-            MyEnum myEnumSecond = stringValueSecond.ToEnumOrDefault<MyEnum>(false);
-            MyEnum myEnumThird = stringValueThird.ToEnumOrDefault<MyEnum>(false);
+            MyEnum myEnum = stringValue.ToEnumOrDefault<MyEnum>(false);
 
             // Assert.
-            Assert.IsType<MyEnum>(myEnumFirst);
-            Assert.IsType<MyEnum>(myEnumSecond);
-            Assert.IsType<MyEnum>(myEnumThird);
-
-            Assert.Equal(MyEnum.First, myEnumFirst);
-            Assert.Equal(MyEnum.Second, myEnumSecond);
-            Assert.Equal(MyEnum.Third, myEnumThird);
+            Assert.IsType<MyEnum>(myEnum);
+            Assert.Equal(expectedEnum, myEnum);
         }
 
         [Fact]
